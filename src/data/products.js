@@ -1,8 +1,7 @@
+import uuid from "uuid";
 export const products = [
   {
-    id: Math.random()
-      .toString(36)
-      .substring(2),
+    id: uuid(),
     title: "Xiaomi Mi A1 4/32GB Dual Sim Black",
     description: `Экран (5.5", IPS, 1920x1080)/ Qualcomm Snapdragon 625 (2.0 ГГц)/ Двойная основная камера: 12 Мп + 12 Мп, фронтальная камера: 5 Мп/ RAM 4 ГБ/ 32 ГБ встроенной памяти + microSD (до 128 ГБ)/ 3G/ LTE/ GPS/ поддержка 2х SIM-карт (Nano-SIM)/ Android 7.1 (Nougat) / 3080 мА*ч`,
     image:
@@ -10,9 +9,7 @@ export const products = [
     price: 4399
   },
   {
-    id: Math.random()
-      .toString(36)
-      .substring(2),
+    id: uuid(),
     title: "Xiaomi Mi A2 Lite 3/32GB Black",
     description: `Экран (5.84", IPS, 2280x1080)/ Qualcomm Snapdragon 625 (2.0 ГГц)/ двойная основная камера: 12 Мп + 5 Мп, фронтальная камера: 5 Мп/ RAM 3 ГБ/ 32 ГБ встроенной памяти + microSD (до 256 ГБ)/ 3G/ LTE/ GPS/ GLONASS/ поддержка 2х SIM-карт (Nano-SIM)/ Android 8.1 (One)/ 4000 мА*ч`,
     image:
@@ -20,9 +17,7 @@ export const products = [
     price: 4699
   },
   {
-    id: Math.random()
-      .toString(36)
-      .substring(2),
+    id: uuid(),
     title: "Xiaomi Redmi S2 3/32GB Gold",
     description: `Экран (5.99", IPS, 1440x720)/ Qualcomm Snapdragon 625 (2.0 ГГц)/ основная двойная камера: 12 Мп + 5 Мп, фронтальная камера: 16 Мп/ RAM 3 ГБ/ 32 ГБ встроенной памяти + microSD (до 256 ГБ)/ 3G/ LTE/ GPS/ GLONASS/ поддержка 2х SIM-карт (Nano-SIM)/ Android 8.1 (Oreo) / 3080 мА*ч`,
     image:
@@ -30,9 +25,7 @@ export const products = [
     price: 4199
   },
   {
-    id: Math.random()
-      .toString(36)
-      .substring(2),
+    id: uuid(),
     title: "Xiaomi Mi Mix 2S 6/64GB White",
     description: `Екран (5.99", IPS LCD, 2160x1080) / Qualcomm Snapdragon 845 (4 x 2.8 ГГц + 4 x 1.8 ГГц) / подвійна основна камера: 12 Мп + 12 Мп, фронтальна: 5 Мп / RAM 6 ГБ / 64 ГБ вбудованої пам'яті / 3G / LTE / GPS / GLONASS / підтримка 2 SIM-карток (Nano-SIM) / Android 8.0 (Oreo) / 3400 мА·год`,
     image:
@@ -40,9 +33,7 @@ export const products = [
     price: 13999
   },
   {
-    id: Math.random()
-      .toString(36)
-      .substring(2),
+    id: uuid(),
     title: "Xiaomi Black Shark 8/128Gb Black",
     description: "",
     image:
@@ -50,9 +41,7 @@ export const products = [
     price: 7123
   },
   {
-    id: Math.random()
-      .toString(36)
-      .substring(2),
+    id: uuid(),
     title: "Xiaomi Mi 8 6/128GB Black",
     description: `Екран (6.21", Super AMOLED, 2248 × 1080) / Qualcomm Snapdragon 845 (4x2.8 ГГц + 4x1.8 ГГц) / Подвійна основна камера: 12 Мп + 12 Мп, фронтальна камера: 20 Мп / RAM 6 ГБ / 128 ГБ вбудованої пам'яті / 3G / LTE / GPS / підтримка 2 SIM-карток (Nano-SIM) / Android 8.1 (MIUI 10) / 3400 мА·год`,
     image:
@@ -60,9 +49,7 @@ export const products = [
     price: 14999
   },
   {
-    id: Math.random()
-      .toString(36)
-      .substring(2),
+    id: uuid(),
     title: "Pocophone F1 6/64Gb Black",
     description: `Екран (6.18", IPS, 2246x1080) / Qualcomm Snapdragon 845 (2.8 + 1.8 ГГц) / основна камера: 12 Мп + 5 Мп, фронтальна камера: 20 Мп / RAM 6 ГБ / 64 ГБ вбудованої пам'яті + microSD (до 128 ГБ) / 3G / LTE / GPS / GLONASS / підтримка 2 SIM-карток (Nano-SIM) / Android 8.0 (Oreo) / 4000 мА·год`,
     image:
@@ -70,9 +57,7 @@ export const products = [
     price: 9999
   },
   {
-    id: Math.random()
-      .toString(36)
-      .substring(2),
+    id: uuid(),
     title: "Xiaomi Mi Max 3 4/64GB Black",
     description: `Екран (6.9", IPS, 2160x1080) / Qualcomm Snapdragon 636 (1.8 ГГц) / основна камера: 12 Мп + 5 Мп, фронтальна камера: 13 Мп / RAM 4 ГБ / 64 ГБ вбудованої пам'яті + microSD / SDHC (до 128 ГБ) / 3G / LTE / GPS / ГЛОНАСС / підтримка 2 SIM-карток (Nano-SIM) / Android 8.1 (Oreo) / 5500 мА·год`,
     image:

@@ -7,7 +7,7 @@ const MainNav = () => {
     <>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <Link className="navbar-brand" to={routes.home}>
-          Shopper-popper
+          Reacted Shop
         </Link>
         <button
           className="navbar-toggler"

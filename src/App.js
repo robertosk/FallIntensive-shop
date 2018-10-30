@@ -1,34 +1,18 @@
-import React, { Component } from "react";
-import { routes } from "./routes";
-import { Route } from "react-router-dom";
-import { products } from "./data/products";
-import MainNav from "./components/mainNav";
-import AdminPage from "./scenes/admin/admin";
-const getProducts = async () => products;
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: []
-    };
-  }
-  async componentDidMount() {
-    const prList = await getProducts();
-    this.setState({ products: prList });
-  }
-  render() {
-    return (
-      <div className="App">
-        <MainNav />
-        <Route
-          path={routes.admin}
-          render={renderProps => (
-            <AdminPage productList={this.state.products} {...renderProps} />
-          )}
-        />
-      </div>
-    );
-  }
-}
+import React from "react";
+import ReactDOM from "react-dom";
+import "./vendor/adminTemplate/style.scss";
+import "jquery";
+import "popper.js";
+import "bootstrap";
+import App from "./layouts/Desktop";
+import { BrowserRouter } from "react-router-dom";
+import * as serviceWorker from "./serviceWorker";
 
-export default App;
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
+
+serviceWorker.unregister();
