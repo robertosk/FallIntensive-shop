@@ -2,25 +2,25 @@ import React from "react";
 import { routes } from "../../../routes";
 import { Link } from "react-router-dom";
 
-const MainNav = () => {
+const MainNav = ({ handleToggleSidebar }) => {
   return (
     <>
       <nav className="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div className="navbar-brand-wrapper d-flex align-items-top justify-content-center">
           <Link className="navbar-brand mr-0" to={routes.home}>
             <img src="../assets/images/logo.gif" alt="R Admin" />
-            <h3 style={{ display: "inline" }}>eacted Shop</h3>
+            <h3>eacted Shop</h3>
           </Link>
         </div>
         <div className="navbar-menu-wrapper d-flex align-items-center">
           <Link
             to={routes.admin}
-            className="navbar-nav navbar-nav-left header-links px-5 text-light"
+            className="navbar-nav navbar-nav-left d-none d-md-flex header-links px-5 text-light"
           >
             <h4>Administrator Portal</h4>
           </Link>
           <ul className="navbar-nav navbar-nav-right">
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown d-none d-sm-block">
               <a
                 className="nav-link count-indicator dropdown-toggle"
                 id="messageDropdown"
@@ -108,7 +108,7 @@ const MainNav = () => {
                 </a>
               </div>
             </li>
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown d-none d-sm-block">
               <a
                 className="nav-link count-indicator dropdown-toggle"
                 id="notificationDropdown"
@@ -176,7 +176,7 @@ const MainNav = () => {
                 </a>
               </div>
             </li>
-            <li className="nav-item dropdown d-none d-xl-inline-block">
+            <li className="nav-item dropdown ">
               <a
                 className="nav-link dropdown-toggle"
                 id="UserDropdown"
@@ -184,7 +184,9 @@ const MainNav = () => {
                 data-toggle="dropdown"
                 aria-expanded="false"
               >
-                <span className="profile-text">Hello, Admin Adminovich !</span>
+                <span className="profile-text d-none d-xl-inline-block">
+                  Hello, Admin Adminovich !
+                </span>
                 <img
                   className="img-xs rounded-circle"
                   src="../assets/images/faces/face1.jpg"
@@ -221,6 +223,7 @@ const MainNav = () => {
             className="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
             type="button"
             data-toggle="offcanvas"
+            onClick={handleToggleSidebar}
           >
             <span className="mdi mdi-menu" />
           </button>

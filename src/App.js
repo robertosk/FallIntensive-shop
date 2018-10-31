@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./vendor/adminTemplate/style.scss";
 import "jquery";
 import "popper.js";
 import "bootstrap";

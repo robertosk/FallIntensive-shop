@@ -1,10 +1,15 @@
 import React from "react";
-const Dashboard = () => {
+import { Link } from "react-router-dom";
+import { routes } from "../../../routes";
+const Dashboard = ({ productsCount }) => {
   return (
     <>
       <h2 className="px-4">Dashboard</h2>
       <div className="row">
-        <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+        <Link
+          to={routes.adminProductList}
+          className="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card"
+        >
           <div className="card card-statistics">
             <div className="card-body">
               <div className="clearfix">
@@ -12,10 +17,10 @@ const Dashboard = () => {
                   <i className="mdi mdi-cube text-danger icon-lg" />
                 </div>
                 <div className="float-right">
-                  <p className="mb-0 text-right">Total Revenue</p>
+                  <p className="mb-0 text-right">Products count</p>
                   <div className="fluid-container">
                     <h3 className="font-weight-medium text-right mb-0">
-                      $65,650
+                      {productsCount}
                     </h3>
                   </div>
                 </div>
@@ -26,7 +31,7 @@ const Dashboard = () => {
               </p>
             </div>
           </div>
-        </div>
+        </Link>
         <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
           <div className="card card-statistics">
             <div className="card-body">

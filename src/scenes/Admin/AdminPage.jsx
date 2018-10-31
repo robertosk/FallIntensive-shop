@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../../vendor/adminTemplate/style.scss";
 import * as Api from "../../api/Api";
 import { Route, Switch } from "react-router-dom";
 import T from "prop-types";
@@ -12,6 +13,7 @@ import { routes } from "../../routes";
 import Footer from "./Components/Footer";
 import { createProduct } from "../../utils/creators";
 import ProductPage from "./ProductPage/ProductsPage";
+import classNames from "classnames";
 
 class AdminPage extends Component {
   constructor(props) {
@@ -19,14 +21,19 @@ class AdminPage extends Component {
     this.state = {
       products: [],
       selectedProduct: createProduct(),
-      loading: true
+      loading: true,
+      toggleSidebar: false
     };
     this.handleUpdateProductList = this.handleUpdateProductList.bind(this);
+    this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
   }
   handleUpdateProductList(products) {
     this.setState({
       products
     });
+  }
+  handleToggleSidebar() {
+    this.setState({ toggleSidebar: !this.state.toggleSidebar });
   }
   async componentDidMount() {
     const [productsData] = await AdminPage.fetch();
@@ -36,21 +43,31 @@ class AdminPage extends Component {
       loading: !this.state.loading
     });
   }
+
   render() {
+    // prettier-ignore
+    let sidebar = classNames("sidebar sidebar-offcanvas",{"active": this.state.toggleSidebar });
+    console.log(sidebar, this.state.toggleSidebar);
     return (
       <div className="page-wrapper">
-        <MainNav />
+        <MainNav handleToggleSidebar={this.handleToggleSidebar} />
         {this.state.loading ? (
           <Loading />
         ) : (
           <div className="container-fluid page-body-wrapper">
-            <nav className="sidebar sidebar-offcanvas" id="sidebar">
+            <nav className={sidebar} id="sidebar">
               <AdminSideNav />
             </nav>
             <div className="main-panel">
               <div className="content-wrapper">
                 <Switch>
-                  <Route path={routes.admin} exact component={Dashboard} />
+                  <Route
+                    path={routes.admin}
+                    exact
+                    render={() => (
+                      <Dashboard productsCount={this.state.products.length} />
+                    )}
+                  />
                   <Route
                     path={routes.adminProductList}
                     render={renderProps => (

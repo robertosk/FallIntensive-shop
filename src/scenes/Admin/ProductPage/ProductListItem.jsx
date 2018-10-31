@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import T from "prop-types";
-import S from "../admin-style.module.css";
 import { productType } from "../../../common/propTypes";
 import { routes } from "../../../routes";
 import { formatRoute } from "react-router-named-routes";
@@ -17,13 +16,31 @@ const ProductListItem = ({
       href="#"
       className="list-group-item list-group-item-action flex-column align-items-start"
     >
-      <div className="d-flex w-100 justify-content-between">
-        <h5 className="mb-1">{product.title}</h5>
-        <small>Price: {product.price}</small>
-      </div>
-      <div className="d-flex w-100 justify-content-between">
-        <p className="mb-1 text2lines">{product.description}</p>
-        <small className={S.productListControls}>
+      <div className="row ticket-card py-2 ">
+        <div className="col-md-1">
+          <img
+            className="img-sm  mb-4 mb-md-0"
+            src={product.image}
+            alt="profile "
+          />
+        </div>
+        <div className="ticket-details col-md-9">
+          <div className="d-flex">
+            <p className="text-dark font-weight-semibold mr-2 mb-0 no-wrap">
+              {product.title}
+            </p>
+          </div>
+          <p className="text-gray ellipsis mb-2">{product.description}</p>
+          <div className="row text-gray d-md-flex d-none">
+            <div className="col-4 d-flex">
+              <small className="mb-0 mr-2 text-muted text-muted">Price:</small>
+              <small className="Last-responded mr-2 mb-0 text-muted text-muted">
+                {product.price}
+              </small>
+            </div>
+          </div>
+        </div>
+        <div className="ticket-actions d-flex align-items-center justify-content-end just col-md-2">
           <button
             type="button"
             className="btn btn-outline-warning mx-1 px-2"
@@ -39,7 +56,7 @@ const ProductListItem = ({
           >
             <i className="mdi mdi-delete m-0" />
           </button>
-        </small>
+        </div>
       </div>
     </Link>
   );

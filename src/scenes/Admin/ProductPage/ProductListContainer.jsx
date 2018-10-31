@@ -59,7 +59,7 @@ class ProductListContainer extends Component {
         editModalStatus: !this.state.editModalStatus
       },
       () => {
-        this.props.handleUpdateProductList(products);
+        //this.props.handleUpdateProductList(products);
       }
     );
   }

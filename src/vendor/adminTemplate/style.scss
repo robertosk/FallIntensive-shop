@@ -98,7 +98,7 @@
 @import "misc";
 @import "footer";
 @import "utilities";
-@import "demo";
+//@import "demo";
 @import "dashboard";
 /*-------------------------------------------------------------------*/
 
@@ -122,3 +122,4 @@
 /* === Landing screens === */
 @import "landing-screens/auth";
 @import "landing-screens/error";
+@import "singleProduct";
