@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import T from "prop-types";
+import _ from "lodash";
 import * as Api from "../../../api/Api";
 import { productType } from "../../../common/propTypes";
 import ProductListView from "./ProductListView";
@@ -11,7 +12,10 @@ class ProductListContainer extends Component {
     this.state = {
       selectedProduct: createProduct(),
       editModalStatus: false,
-      removeModalStatus: false
+      removeModalStatus: false,
+      orderType: "ASC",
+      orderBy: "title",
+      searchQuery: ""
     };
 
     this.onToggleEditModal = this.onToggleEditModal.bind(this);
@@ -19,6 +23,9 @@ class ProductListContainer extends Component {
     this.handleEditSelected = this.handleEditSelected.bind(this);
     this.onSubmitEdit = this.onSubmitEdit.bind(this);
     this.onSubmitRemove = this.onSubmitRemove.bind(this);
+    this.doOrderType = this.doOrderType.bind(this);
+    this.doOrderBy = this.doOrderBy.bind(this);
+    this.doSearch = this.doSearch.bind(this);
   }
   onToggleEditModal(e, selectedProduct = createProduct()) {
     e.preventDefault();
@@ -27,7 +34,6 @@ class ProductListContainer extends Component {
       editModalStatus: !this.state.editModalStatus
     });
   }
-
   handleEditSelected(name, value) {
     this.setState({
       selectedProduct: {
@@ -43,6 +49,7 @@ class ProductListContainer extends Component {
     );
     if (productIndex >= 0) {
       products[productIndex] = this.state.selectedProduct;
+      ProductListContainer.editProduct(this.state.selectedProduct);
     } else {
       products.push(this.state.selectedProduct);
       ProductListContainer.addProduct(this.state.selectedProduct);
@@ -56,7 +63,6 @@ class ProductListContainer extends Component {
       }
     );
   }
-
   onToggleRemoveModal(e, productId) {
     e.preventDefault();
     this.setState({
@@ -65,7 +71,6 @@ class ProductListContainer extends Component {
       removeModalStatus: !this.state.removeModalStatus
     });
   }
-
   onSubmitRemove(productId) {
     let products = this.props.products.filter(p => p.id !== productId);
     this.setState(
@@ -78,19 +83,45 @@ class ProductListContainer extends Component {
       }
     );
   }
+  doOrderType(orderType = "ASC") {
+    this.setState({ orderType });
+  }
+  doOrderBy(orderBy = "title") {
+    this.setState({ orderBy });
+  }
+  doSearch(searchQuery) {
+    this.setState({ searchQuery });
+  }
 
   render() {
     const { products } = this.props;
+    let sortedProducts = _.orderBy(
+      products,
+      this.state.orderBy,
+      this.state.orderType
+    );
+    sortedProducts = sortedProducts.filter(
+      product =>
+        product.title
+          .toLowerCase()
+          .includes(this.state.searchQuery.toLowerCase()) ||
+        product.description
+          .toLowerCase()
+          .includes(this.state.searchQuery.toLowerCase())
+    );
     return (
       <ProductListView
         {...this.props}
         {...this.state}
-        products={products}
+        products={sortedProducts}
         onToggleEditModal={this.onToggleEditModal}
         onToggleRemoveModal={this.onToggleRemoveModal}
         handleEditSelected={this.handleEditSelected}
         onSubmitEdit={this.onSubmitEdit}
         onSubmitRemove={this.onSubmitRemove}
+        doOrderType={this.doOrderType}
+        doOrderBy={this.doOrderBy}
+        doSearch={this.doSearch}
       />
     );
   }
