@@ -47,7 +47,7 @@ class AdminPage extends Component {
   render() {
     // prettier-ignore
     let sidebar = classNames("sidebar sidebar-offcanvas",{"active": this.state.toggleSidebar });
-    console.log(sidebar, this.state.toggleSidebar);
+
     return (
       <div className="page-wrapper">
         <MainNav handleToggleSidebar={this.handleToggleSidebar} />
@@ -95,7 +95,7 @@ class AdminPage extends Component {
     );
   }
 }
-AdminPage.fetch = params => Promise.all([Api.AdminProducts.fetchProducts()]);
+AdminPage.fetch = params => Promise.all([Api.Products.fetchProducts()]);
 
 AdminPage.propTypes = {
   products: T.arrayOf(T.shape(productType)),

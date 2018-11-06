@@ -7,7 +7,7 @@ export const setToken = token => {
   axios.defaults.headers.Authorization = _token ? `Bearer ${_token}` : null;
 };
 
-export const AdminProducts = {
+export const Products = {
   fetchProducts() {
     return axios.get(`${apiPathV1}/products`);
   },
@@ -18,6 +18,7 @@ export const AdminProducts = {
     return axios.post(`${apiPathV1}/products`, product);
   },
   editProduct(product) {
+    console.log(`${apiPathV1}/products/${product.id}`, product);
     return axios.patch(`${apiPathV1}/products/${product.id}`, product);
   },
   deleteProduct(id) {

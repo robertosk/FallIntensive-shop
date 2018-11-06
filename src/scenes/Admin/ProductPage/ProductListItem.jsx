@@ -13,7 +13,6 @@ const ProductListItem = ({
   return (
     <Link
       to={formatRoute(routes.adminProduct, { id: product.id })}
-      href="#"
       className="list-group-item list-group-item-action flex-column align-items-start"
     >
       <div className="row ticket-card py-2 ">

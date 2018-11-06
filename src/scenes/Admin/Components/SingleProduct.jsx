@@ -124,6 +124,6 @@ class SingleProduct extends Component {
 }
 
 SingleProduct.editProduct = product =>
-  Promise.all([Api.AdminProducts.editProduct(product)]);
+  Promise.all([Api.Products.editProduct(product)]);
 
 export default SingleProduct;

@@ -127,11 +127,11 @@ class ProductListContainer extends Component {
   }
 }
 ProductListContainer.addProduct = product =>
-  Promise.all([Api.AdminProducts.addProduct(product)]);
+  Promise.all([Api.Products.addProduct(product)]);
 ProductListContainer.editProduct = product =>
-  Promise.all([Api.AdminProducts.editProduct(product)]);
+  Promise.all([Api.Products.editProduct(product)]);
 ProductListContainer.deleteProduct = productId =>
-  Promise.all([Api.AdminProducts.deleteProduct(productId)]);
+  Promise.all([Api.Products.deleteProduct(productId)]);
 
 ProductListContainer.propTypes = {
   products: T.arrayOf(T.shape(productType)),

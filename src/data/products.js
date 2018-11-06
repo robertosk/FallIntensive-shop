@@ -3,7 +3,7 @@ export const products = [
   {
     id: uuid(),
     title: "Xiaomi Mi A1 4/32GB Dual Sim Black",
-    description: `Экран (5.5", IPS, 1920x1080)/ Qualcomm Snapdragon 625 (2.0 ГГц)/ Двойная основная камера: 12 Мп + 12 Мп, фронтальная камера: 5 Мп/ RAM 4 ГБ/ 32 ГБ встроенной памяти + microSD (до 128 ГБ)/ 3G/ LTE/ GPS/ поддержка 2х SIM-карт (Nano-SIM)/ Android 7.1 (Nougat) / 3080 мА*ч`,
+    description: `Экран (5.5, IPS, 1920x1080)/ Qualcomm Snapdragon 625 (2.0 ГГц)/ Двойная основная камера: 12 Мп + 12 Мп, фронтальная камера: 5 Мп/ RAM 4 ГБ/ 32 ГБ встроенной памяти + microSD (до 128 ГБ)/ 3G/ LTE/ GPS/ поддержка 2х SIM-карт (Nano-SIM)/ Android 7.1 (Nougat) / 3080 мА*ч`,
     image:
       "https://i1.rozetka.ua/goods/4214051/xiaomi_mi_a1_4_32g_black_eur_images_4214051552.jpg",
     price: 4399
