@@ -6,14 +6,18 @@ import "bootstrap";
 import App from "./layouts/Desktop";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./store/store";
+import { PersistGate } from "redux-persist/es/integration/react";
+import { store, persistor } from "./store/store";
 import * as serviceWorker from "./serviceWorker";
+import Loading from "./components/Loading";
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <PersistGate loading={<Loading />} persistor={persistor}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { routes } from "../../../routes";
 import CartWidget from "../Sections/components/CartWidget";
 
-const CartPage = () => {
+const CartPage = ({ cartModal }) => {
   return (
     <div className="section">
       <div className="container">

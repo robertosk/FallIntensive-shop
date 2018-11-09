@@ -8,7 +8,7 @@ import StoreFilter from "../Sections/components/StoreFilter";
 const StorePage = ({ products, onAddToCart }) => {
   return (
     <>
-      <Breadcrumb />
+      <Breadcrumb itemsCount={products.length} />
       <div className="section">
         <div className="container">
           <div className="row">
@@ -43,7 +43,7 @@ const StorePage = ({ products, onAddToCart }) => {
                   </li>
                   <li>
                     <a href="#">
-                      <i className="fa fa-angle-right" />
+                      <i className="mdi mdi-chevron-right" />
                     </a>
                   </li>
                 </ul>

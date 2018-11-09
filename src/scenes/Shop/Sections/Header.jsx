@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { routes } from "../../../routes";
 import { Link } from "react-router-dom";
-import CartWidget from "./components/CartWidget";
 
 const Header = ({ cartItemsCount }) => {
   return (
@@ -14,8 +13,12 @@ const Header = ({ cartItemsCount }) => {
               <img src="../assets/images/logo-red.gif" alt="R Admin" />
               <h3>eacted Shop</h3>
             </Link>
-
-            <i className="mdi mdi-chevron-down" />
+          </div>
+          <div className="header-search">
+            <div className="search-form">
+              <input className="input" placeholder="Search here" />
+              <button className="search-btn">Search</button>
+            </div>
           </div>
           <div className=" d-flex">
             <ul className="navbar-nav navbar-nav-right d-flex flex-row">
@@ -26,26 +29,13 @@ const Header = ({ cartItemsCount }) => {
                   <span>Your Wishlist</span>
                 </a>
               </li>
-              {/* <li className="mx-3 nav-item dropdown ">
+              <li className="mx-3 nav-item  ">
                 <Link
                   to={{
                     pathname: routes.card,
-                    state: { modal: true }
+                    state: { cartModal: true }
                   }}
-                  className="nav-link count-indicator dropdown-toggle"
-                >
-                  <i className="mdi mdi-basket" />
-                  <br />
-                  <span>Your Cart</span>
-                  <span className="count">{cartItemsCount}</span>
-                </Link>
-              </li> */}
-              <li className="mx-3 nav-item dropdown ">
-                <a
-                  href="#"
-                  className="nav-link count-indicator dropdown-toggle"
-                  id="cart"
-                  data-toggle="dropdown"
+                  className="nav-link count-indicator "
                 >
                   <i className="mdi mdi-basket" />
                   <br />
@@ -55,22 +45,7 @@ const Header = ({ cartItemsCount }) => {
                   ) : (
                     undefined
                   )}
-                </a>
-                <div
-                  className="dropdown-menu dropdown-menu-right navbar-dropdown preview-cart"
-                  aria-labelledby="card"
-                >
-                  <CartWidget />
-                  <div className="cart-btns">
-                    <Link to={routes.card}>
-                      <i className="mdi mdi-cart" />
-                      View Cart
-                    </Link>
-                    <a href="#">
-                      Checkout <i className="mdi mdi-clipboard-check" />
-                    </a>
-                  </div>
-                </div>
+                </Link>
               </li>
               <li className="mx-3 nav-item dropdown">
                 <Link className="nav-link" to={routes.login}>

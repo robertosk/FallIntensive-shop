@@ -47,13 +47,6 @@ const MainNav = () => {
                 </Link>
               </li>
             </ul>
-            <form className="form-inline my-2 my-md-0">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Search"
-              />
-            </form>
           </div>
         </div>
       </nav>

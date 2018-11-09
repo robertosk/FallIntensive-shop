@@ -1,5 +1,7 @@
-import * as actions from "./productsActions";
+import { normalize } from "normalizr";
 import * as Api from "../../api/Api";
+import * as schemes from "../../api/schemes";
+import * as actions from "./productsActions";
 
 export const fetchProducts = () => async dispatch => {
   try {
@@ -7,7 +9,14 @@ export const fetchProducts = () => async dispatch => {
 
     const res = await Api.Products.fetchProducts();
 
-    dispatch(actions.fetchProductsOk(res.data));
+    const { result, entities } = normalize(res.data, schemes.ProductCollection);
+
+    dispatch(
+      actions.fetchProductsOk({
+        ids: result,
+        entities
+      })
+    );
   } catch (err) {
     dispatch(actions.fetchProductsError(err.message));
   }

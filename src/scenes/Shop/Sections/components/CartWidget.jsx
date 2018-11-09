@@ -1,16 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import ProductWidget from "../components/ProductWidget";
+import * as cartSelector from "../../../../modules/cart/cartSelectors";
+import * as cartActions from "../../../../modules/cart/cartActions";
 
-const CartWidget = ({ items }) => {
-  let totalSum = 0;
-  if (items.length !== 0) {
-    totalSum = items.reduce(
-      (accumulator, currentValue) => accumulator + currentValue.price,
-      0
-    );
-  }
-
+const CartWidget = ({ items, totalPrice, removeFromCart }) => {
   return (
     <div className="order-summary">
       {items.length !== 0 ? (
@@ -25,7 +19,11 @@ const CartWidget = ({ items }) => {
           </div>
           <div className="order-products">
             {items.map(item => (
-              <ProductWidget key={`cart_${item.id}`} product={item} />
+              <ProductWidget
+                key={`cart_${item.id}`}
+                product={item}
+                removeFromCart={removeFromCart}
+              />
             ))}
           </div>
           <div className="order-col">
@@ -46,7 +44,7 @@ const CartWidget = ({ items }) => {
           <strong>TOTAL</strong>
         </div>
         <div>
-          <strong className="order-total">${totalSum}</strong>
+          <strong className="order-total">${totalPrice}</strong>
         </div>
       </div>
     </div>
@@ -54,7 +52,13 @@ const CartWidget = ({ items }) => {
 };
 
 const mapStateToProps = state => ({
-  items: state.cart.items
+  items: cartSelector.getProducts(state),
+  totalPrice: cartSelector.getTotalPrice(state)
 });
-
-export default connect(mapStateToProps)(CartWidget);
+const mapStateToDispatch = {
+  removeFromCart: cartActions.remove
+};
+export default connect(
+  mapStateToProps,
+  mapStateToDispatch
+)(CartWidget);

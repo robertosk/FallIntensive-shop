@@ -1,6 +1,6 @@
 import React from "react";
 
-const Breadcrumb = () => {
+const Breadcrumb = ({ itemsCount }) => {
   return (
     <div id="breadcrumb" className="section">
       <div className="container">
@@ -13,10 +13,7 @@ const Breadcrumb = () => {
               <li>
                 <a href="#">All Categories</a>
               </li>
-              <li>
-                <a href="#">Accessories</a>
-              </li>
-              <li className="active">Headphones (227,490 Results)</li>
+              <li className="active">Phones ({itemsCount} Results)</li>
             </ul>
           </div>
         </div>

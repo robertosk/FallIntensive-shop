@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { mainNav, infoNav, serviceNav } from "../../../data/navigations";
 const Footer = () => {
   return (
     <footer id="footer">
@@ -39,21 +41,11 @@ const Footer = () => {
               <div className="footer">
                 <h3 className="footer-title">Categories</h3>
                 <ul className="footer-links">
-                  <li>
-                    <a href="#">Hot deals</a>
-                  </li>
-                  <li>
-                    <a href="#">Laptops</a>
-                  </li>
-                  <li>
-                    <a href="#">Smartphones</a>
-                  </li>
-                  <li>
-                    <a href="#">Cameras</a>
-                  </li>
-                  <li>
-                    <a href="#">Accessories</a>
-                  </li>
+                  {mainNav.map((item, index) => (
+                    <li key={`infoNav${index}`}>
+                      <Link to={item.link}>{item.title}</Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -64,21 +56,11 @@ const Footer = () => {
               <div className="footer">
                 <h3 className="footer-title">Information</h3>
                 <ul className="footer-links">
-                  <li>
-                    <a href="#">About Us</a>
-                  </li>
-                  <li>
-                    <a href="#">Contact Us</a>
-                  </li>
-                  <li>
-                    <a href="#">Privacy Policy</a>
-                  </li>
-                  <li>
-                    <a href="#">Orders and Returns</a>
-                  </li>
-                  <li>
-                    <a href="#">Terms & Conditions</a>
-                  </li>
+                  {infoNav.map((item, index) => (
+                    <li key={`infoNav${index}`}>
+                      <Link to={item.link}>{item.title}</Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -87,21 +69,11 @@ const Footer = () => {
               <div className="footer">
                 <h3 className="footer-title">Service</h3>
                 <ul className="footer-links">
-                  <li>
-                    <a href="#">My Account</a>
-                  </li>
-                  <li>
-                    <a href="#">View Cart</a>
-                  </li>
-                  <li>
-                    <a href="#">Wishlist</a>
-                  </li>
-                  <li>
-                    <a href="#">Track My Order</a>
-                  </li>
-                  <li>
-                    <a href="#">Help</a>
-                  </li>
+                  {serviceNav.map((item, index) => (
+                    <li key={`srvcNav-${index}`}>
+                      <Link to={item.link}>{item.title}</Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

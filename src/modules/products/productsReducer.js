@@ -8,15 +8,18 @@ const initialState = {
 
 export default handleActions(
   {
-    [constants.FETCH_PRODUCTS_START]: () => ({
+    [constants.FETCH_PRODUCTS_START]: state => ({
+      ...state,
       isLoading: true,
       error: null
     }),
     [constants.FETCH_PRODUCTS_OK]: (state, action) => ({
+      ...state,
       isLoading: false,
-      products: action.payload
+      products: action.payload.ids
     }),
     [constants.FETCH_PRODUCTS_ERROR]: (state, action) => ({
+      ...state,
       isLoading: false,
       error: action.payload.message
     })

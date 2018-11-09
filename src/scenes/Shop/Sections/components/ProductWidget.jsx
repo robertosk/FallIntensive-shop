@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { routes } from "../../../../routes";
-import { createProduct } from "../../../../utils/creators";
 import { formatRoute } from "react-router-named-routes";
 
-const ProductWidget = ({ product = createProduct }) => {
+const ProductWidget = ({ product, removeFromCart }) => {
+  if (!product) {
+    return null;
+  }
   return (
     <div className="product-widget">
       <Link to={formatRoute(routes.product, { id: product.id })}>
@@ -12,8 +14,16 @@ const ProductWidget = ({ product = createProduct }) => {
           <img src={product.image} alt="" />
         </div>
         <div className="product-body">
-          <h3 className="product-name">
+          <h3 className="product-name d-flex justify-content-between">
             <span>{product.title}</span>
+            <span
+              onClick={e => {
+                e.preventDefault();
+                return removeFromCart(product.id);
+              }}
+            >
+              remove
+            </span>
           </h3>
           <h4 className="product-price d-flex justify-content-between">
             <span className="qty">1x</span>

@@ -1,5 +1,6 @@
 import axios from "axios";
-const apiPathV1 = "/api/v1";
+const apiPath = "/api/v1";
+
 let _token = null;
 
 export const setToken = token => {
@@ -9,19 +10,18 @@ export const setToken = token => {
 
 export const Products = {
   fetchProducts() {
-    return axios.get(`${apiPathV1}/products`);
+    return axios.get(`${apiPath}/products`);
   },
   fetchProductByID(id) {
-    return axios.get(`${apiPathV1}/products/${id}`);
+    return axios.get(`${apiPath}/products/${id}`);
   },
   addProduct(product) {
-    return axios.post(`${apiPathV1}/products`, product);
+    return axios.post(`${apiPath}/products`, product);
   },
   editProduct(product) {
-    console.log(`${apiPathV1}/products/${product.id}`, product);
-    return axios.patch(`${apiPathV1}/products/${product.id}`, product);
+    return axios.patch(`${apiPath}/products/${product.id}`, product);
   },
   deleteProduct(id) {
-    return axios.delete(`${apiPathV1}/products/${id}`);
+    return axios.delete(`${apiPath}/products/${id}`);
   }
 };

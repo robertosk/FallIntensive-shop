@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import T from "prop-types";
-import _ from "lodash";
 import * as Api from "../../../api/Api";
 import { productType } from "../../../common/propTypes";
 import ProductListView from "./ProductListView";
 import { createProduct } from "../../../utils/creators";
+import { sortProducts, searchProducts } from "../../../utils/sorting";
 
 class ProductListContainer extends Component {
   constructor(props) {
@@ -95,20 +95,12 @@ class ProductListContainer extends Component {
 
   render() {
     const { products } = this.props;
-    let sortedProducts = _.orderBy(
+    let sortedProducts = sortProducts(
       products,
       this.state.orderBy,
       this.state.orderType
     );
-    sortedProducts = sortedProducts.filter(
-      product =>
-        product.title
-          .toLowerCase()
-          .includes(this.state.searchQuery.toLowerCase()) ||
-        product.description
-          .toLowerCase()
-          .includes(this.state.searchQuery.toLowerCase())
-    );
+    sortedProducts = searchProducts(sortedProducts, this.state.searchQuery);
     return (
       <ProductListView
         {...this.props}

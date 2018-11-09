@@ -23,22 +23,22 @@ const NewsLetter = () => {
               <ul className="newsletter-follow">
                 <li>
                   <a href="#">
-                    <i className="fa fa-facebook" />
+                    <i className="mdi mdi-facebook" />
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i className="fa fa-twitter" />
+                    <i className="mdi mdi-twitter" />
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i className="fa fa-instagram" />
+                    <i className="mdi mdi-instagram" />
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i className="fa fa-pinterest" />
+                    <i className="mdi mdi-pinterest" />
                   </a>
                 </li>
               </ul>

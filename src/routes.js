@@ -10,12 +10,18 @@ export const routes = {
   home: "/",
   productList: "/products",
   product: "/products/:id",
-  card: "/cart",
+
+  login: "/auth",
+  remember: "/auth/remember",
+
+  userAccount: "user/:id",
+  wishList: "/wishList",
+  card: "/card",
   cartCheckout: "/cart/checkout",
+
   about: "/about",
-  contact: "/contact",
+  contactUs: "/contactUs",
   termsAndConditions: "/termsAndConditions",
   privacyPolicy: "/privacyPolicy",
-  login: "/auth",
-  remember: "/auth/remember"
+  ordersAndReturns: "/ordersAndReturns"
 };

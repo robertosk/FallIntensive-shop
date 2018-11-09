@@ -3,6 +3,38 @@
   .nav-item {
     line-height: 1;
 
+    .count-indicator {
+      position: relative;
+      text-align: center;
+
+      i {
+        font-size: 21px;
+        margin-right: 0;
+        vertical-align: middle;
+      }
+
+      .count {
+        position: absolute;
+        left: 50%;
+        min-width: 1rem;
+        padding: 0 4px;
+        height: 1rem;
+        border-radius: 100%;
+        background: #FF0017;
+        color: $white;
+        font-size: 11px;
+        top: -1px;
+        font-weight: 600;
+        line-height: 1rem;
+        border: none;
+        text-align: center;
+      }
+
+      &:after {
+        display: none;
+      }
+    }
+
     &.dropdown {
       .dropdown-toggle {
         &:after {
@@ -13,38 +45,6 @@
           text-rendering: auto;
           line-height: inherit;
           vertical-align: 0;
-        }
-      }
-
-      .count-indicator {
-        position: relative;
-        text-align: center;
-
-        i {
-          font-size: 21px;
-          margin-right: 0;
-          vertical-align: middle;
-        }
-
-        .count {
-          position: absolute;
-          left: 50%;
-          min-width: 1rem;
-          padding: 0 4px;
-          height: 1rem;
-          border-radius: 100%;
-          background: #FF0017;
-          color: $white;
-          font-size: 11px;
-          top: -1px;
-          font-weight: 600;
-          line-height: 1rem;
-          border: none;
-          text-align: center;
-        }
-
-        &:after {
-          display: none;
         }
       }
 
