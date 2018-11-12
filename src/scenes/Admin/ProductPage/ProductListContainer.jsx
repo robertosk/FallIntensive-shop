@@ -1,10 +1,17 @@
 import React, { Component } from "react";
+
+import { connect } from "react-redux";
+
+import * as adminProductsOperations from "../../../modules/adminProducts/adminProductsOperations";
+import * as adminProductsSelectors from "../../../modules/adminProducts/adminProductsSelector";
+
 import T from "prop-types";
-import * as Api from "../../../api/Api";
 import { productType } from "../../../common/propTypes";
-import ProductListView from "./ProductListView";
+
 import { createProduct } from "../../../utils/creators";
 import { sortProducts, searchProducts } from "../../../utils/sorting";
+
+import ProductListView from "./ProductListView";
 
 class ProductListContainer extends Component {
   constructor(props) {
@@ -42,6 +49,7 @@ class ProductListContainer extends Component {
       }
     });
   }
+
   onSubmitEdit() {
     let products = [...this.props.products];
     let productIndex = products.findIndex(
@@ -49,19 +57,16 @@ class ProductListContainer extends Component {
     );
     if (productIndex >= 0) {
       products[productIndex] = this.state.selectedProduct;
-      ProductListContainer.editProduct(this.state.selectedProduct);
+      this.props.editProduct(this.state.selectedProduct);
+      // ProductListContainer.editProduct(this.state.selectedProduct);
     } else {
       products.push(this.state.selectedProduct);
-      ProductListContainer.addProduct(this.state.selectedProduct);
+      this.props.addProduct(this.state.selectedProduct);
+      // ProductListContainer.addProduct(this.state.selectedProduct);
     }
-    this.setState(
-      {
-        editModalStatus: !this.state.editModalStatus
-      },
-      () => {
-        //this.props.handleUpdateProductList(products);
-      }
-    );
+    this.setState({
+      editModalStatus: !this.state.editModalStatus
+    });
   }
   onToggleRemoveModal(e, productId) {
     e.preventDefault();
@@ -71,17 +76,11 @@ class ProductListContainer extends Component {
       removeModalStatus: !this.state.removeModalStatus
     });
   }
-  onSubmitRemove(productId) {
-    let products = this.props.products.filter(p => p.id !== productId);
-    this.setState(
-      {
-        removeModalStatus: !this.state.removeModalStatus
-      },
-      () => {
-        ProductListContainer.deleteProduct(productId);
-        this.props.handleUpdateProductList(products);
-      }
-    );
+  onSubmitRemove(product) {
+    this.props.removeProduct(product);
+    this.setState({
+      removeModalStatus: !this.state.removeModalStatus
+    });
   }
   doOrderType(orderType = "ASC") {
     this.setState({ orderType });
@@ -92,7 +91,9 @@ class ProductListContainer extends Component {
   doSearch(searchQuery) {
     this.setState({ searchQuery });
   }
-
+  async componentDidMount() {
+    this.props.fetchProducts();
+  }
   render() {
     const { products } = this.props;
     let sortedProducts = sortProducts(
@@ -118,12 +119,14 @@ class ProductListContainer extends Component {
     );
   }
 }
+/*
 ProductListContainer.addProduct = product =>
   Promise.all([Api.Products.addProduct(product)]);
 ProductListContainer.editProduct = product =>
   Promise.all([Api.Products.editProduct(product)]);
 ProductListContainer.deleteProduct = productId =>
   Promise.all([Api.Products.deleteProduct(productId)]);
+*/
 
 ProductListContainer.propTypes = {
   products: T.arrayOf(T.shape(productType)),
@@ -133,4 +136,19 @@ ProductListContainer.propTypes = {
   removeModal: T.bool
 };
 
-export default ProductListContainer;
+const mapStateToProps = state => ({
+  products: adminProductsSelectors.getProducts(state),
+  isLoading: state.adminProducts.isLoading
+});
+
+const mapStateToDispatch = {
+  fetchProducts: adminProductsOperations.fetchProducts,
+  addProduct: adminProductsOperations.addProduct,
+  editProduct: adminProductsOperations.editProduct,
+  removeProduct: adminProductsOperations.removeProduct
+};
+
+export default connect(
+  mapStateToProps,
+  mapStateToDispatch
+)(ProductListContainer);

@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import * as Api from "../../../api/Api";
+
+import { connect } from "react-redux";
+import * as productsSelector from "../../../modules/products/productsSelectors";
+import * as adminProductsOperations from "../../../modules/adminProducts/adminProductsOperations";
+
 import { Link, Redirect } from "react-router-dom";
 import { routes } from "../../../routes";
 
@@ -7,7 +11,7 @@ class SingleProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: props.products.find(p => p.id === props.match.params.id),
+      product: props.product,
       redirect: false
     };
     this.handleChange = this.handleChange.bind(this);
@@ -22,9 +26,9 @@ class SingleProduct extends Component {
     });
   }
   handleSubmit() {
-    SingleProduct.editProduct(this.state.product).then(
-      this.setState({ redirect: true })
-    );
+    this.props
+      .editProduct(this.state.product)
+      .then(this.setState({ redirect: true }));
   }
   render() {
     return (
@@ -123,7 +127,15 @@ class SingleProduct extends Component {
   }
 }
 
-SingleProduct.editProduct = product =>
-  Promise.all([Api.Products.editProduct(product)]);
+const mapStateToProps = (state, props) => ({
+  product: productsSelector.getProduct(state, props.match.params.id)
+});
+const mapStateToDispatch = {
+  editProduct: adminProductsOperations.editProduct,
+  removeProduct: adminProductsOperations.removeProduct
+};
 
-export default SingleProduct;
+export default connect(
+  mapStateToProps,
+  mapStateToDispatch
+)(SingleProduct);

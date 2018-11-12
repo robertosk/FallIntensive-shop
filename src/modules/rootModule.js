@@ -2,5 +2,6 @@ import { combineReducers } from "redux";
 import products from "./products/productsReducer";
 import cart from "./cart/cartReducer";
 import entities from "./entities/entitiesReducer";
+import adminProducts from "./adminProducts/adminProductsReducer";
 
-export default combineReducers({ products, cart, entities });
+export default combineReducers({ products, cart, entities, adminProducts });

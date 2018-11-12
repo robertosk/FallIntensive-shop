@@ -24,21 +24,15 @@ class ShopPage extends Component {
     }
   }
   render() {
-    return (
-      <ShopPageView
-        {...this.props}
-        {...this.state}
-        previousLocation={this.previousLocation}
-      />
-    );
+    return <ShopPageView {...this.props} {...this.state} />;
   }
 }
 
 const mapStateToProps = state => ({
-  products: productsSelectors.getProducts(state, "ququ"),
+  products: productsSelectors.getProducts(state),
   isLoading: state.products.isLoading,
   isError: !!state.products.error,
-  error: !!state.products.error
+  error: state.products.error
 });
 
 const mapStateToDispatch = {

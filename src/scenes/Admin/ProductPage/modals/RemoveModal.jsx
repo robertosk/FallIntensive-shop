@@ -34,7 +34,7 @@ const RemoveModal = ({
           </button>
           <button
             className="btn btn-outline-danger mx-1 "
-            onClick={() => onSubmitRemove(selectedProduct.id)}
+            onClick={() => onSubmitRemove(selectedProduct)}
           >
             Remove
           </button>

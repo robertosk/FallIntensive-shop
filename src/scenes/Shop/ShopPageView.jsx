@@ -27,11 +27,11 @@ const ShopPageView = ({
   match,
   products,
   addToCart,
-  location,
   history,
   isLoading,
   isError,
   error,
+  location,
   previousLocation
 }) => {
   let cartModal = !!(

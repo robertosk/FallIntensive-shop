@@ -4,24 +4,14 @@ import { Route, Switch } from "react-router-dom";
 import SingleProduct from "../Components/SingleProduct";
 import ProductListContainer from "./ProductListContainer";
 
-const ProductPage = ({
-  match,
-  products,
-  selectedProduct,
-  handleUpdateProductList
-}) => {
+const ProductPage = ({ match, products }) => {
   return (
     <Switch>
       <Route
         path={match.path}
         exact
         render={rProps => (
-          <ProductListContainer
-            renderProps={rProps}
-            products={products}
-            selectedProduct={selectedProduct}
-            handleUpdateProductList={handleUpdateProductList}
-          />
+          <ProductListContainer renderProps={rProps} products={products} />
         )}
       />
 

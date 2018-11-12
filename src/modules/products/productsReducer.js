@@ -1,5 +1,6 @@
-import * as constants from "../products/productsConstants";
+import * as constants from "./productsConstants";
 import { handleActions } from "redux-actions";
+
 const initialState = {
   products: [],
   isLoading: false,
