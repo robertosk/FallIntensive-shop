@@ -6,3 +6,9 @@ export const createProduct = value => ({
   image: "",
   price: 0
 });
+export const createUser = value => ({
+  id: uuid(),
+  firstName: "",
+  lastName: "",
+  role: "user"
+});

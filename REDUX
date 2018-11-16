@@ -1,26 +1,12 @@
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes not staged for commit:
-	modified:   src/layouts/Desktop.js
-	modified:   src/modules/cart/cartActions.js
-	modified:   src/modules/cart/cartReducer.js
-	modified:   src/modules/products/productsReducer.js
-	modified:   src/modules/rootModule.js
-	deleted:    src/scenes/Admin/AdminPage.jsx
-	modified:   src/scenes/Admin/Components/SingleProduct.jsx
-	modified:   src/scenes/Admin/ProductPage/ProductListContainer.jsx
-	modified:   src/scenes/Admin/ProductPage/ProductListView.jsx
-	modified:   src/scenes/Admin/ProductPage/ProductsPage.jsx
-	modified:   src/scenes/Admin/ProductPage/modals/RemoveModal.jsx
-	modified:   src/scenes/Shop/ShopPageContainer.jsx
-	modified:   src/scenes/Shop/ShopPageView.jsx
-	modified:   src/store/store.js
-
-Untracked files:
-	REDUX
-	src/modules/adminProducts/
-	src/scenes/Admin/AdminPageContainer.jsx
-	src/scenes/Admin/AdminPageView.jsx
-
-no changes added to commit
+[master 1c9e344] ADMIN=
+ 22 files changed, 568 insertions(+), 299 deletions(-)
+ create mode 100644 REDUX
+ create mode 100644 src/modules/adminProducts/adminProductsActions.js
+ create mode 100644 src/modules/adminProducts/adminProductsConstants.js
+ create mode 100644 src/modules/adminProducts/adminProductsOperations.js
+ create mode 100644 src/modules/adminProducts/adminProductsReducer.js
+ create mode 100644 src/modules/adminProducts/adminProductsSelector.js
+ delete mode 100644 src/scenes/Admin/AdminPage.jsx
+ create mode 100644 src/scenes/Admin/AdminPageContainer.jsx
+ create mode 100644 src/scenes/Admin/AdminPageView.jsx
+ rewrite src/scenes/Admin/ProductPage/ProductListView.jsx (73%)

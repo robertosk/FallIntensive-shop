@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import T from "prop-types";
-import { productType } from "../../../common/propTypes";
-import { routes } from "../../../routes";
+import { productType } from "../../../../common/propTypes";
+import { routes } from "../../../../routes";
 import { formatRoute } from "react-router-named-routes";
 
 const ProductListItem = ({
@@ -51,7 +51,7 @@ const ProductListItem = ({
           <button
             type="button"
             className="btn btn-outline-danger mx-1 px-2"
-            onClick={e => onToggleRemoveModal(e, product.id)}
+            onClick={e => onToggleRemoveModal(e, product)}
           >
             <i className="mdi mdi-delete m-0" />
           </button>

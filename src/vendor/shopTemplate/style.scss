@@ -84,7 +84,7 @@ $url_0: url("");
 %extend_7 {
   position: absolute;
   left: 0;
-  top: 4px;
+  top: 0;
   width: 14px;
   height: 14px;
   border: 2px solid $color_mystic_approx;
@@ -182,6 +182,11 @@ ol {
   &:focus {
     opacity: .9;
     color: $white;
+  }
+
+  &[disabled] {
+    background: #333;
+    cursor: not-allowed;
   }
 }
 
@@ -493,6 +498,15 @@ ol {
 
       padding-top: 0;
       padding-bottom: 0;
+
+      &#UserDropdown {
+        margin-top: -6px;
+
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
 
       i {
         font-size: 28px;
@@ -1215,7 +1229,7 @@ ol {
   }
 }
 
-.store-pagination {
+.pagination {
   float: right;
 
   li {
@@ -2245,17 +2259,6 @@ textarea.input {
   margin: 15px 0;
 }
 
-.modalTest {
-  width: 300px;
-  position: fixed;
-  top: 20px;
-  right: 30%;
-  left: 30%;
-  z-index: 1200;
-  box-shadow: 0 1px 2px rgba(0,0,0,.2);
-  background: #FFF;
-}
-
 .contact {
   margin-top: 5%;
 
@@ -2269,12 +2272,12 @@ textarea.input {
       font-size: .85em;
       font-family: 'Open Sans', sans-serif;
       margin: 10px 0;
-      border: none;
       color: #888;
       background: #F8F8F8;
       float: left;
       outline: none;
       border: 1px solid #DFE0E2;
+      border-radius: 6px;
     }
   }
 

@@ -2,30 +2,32 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { routes } from "../../routes";
 import classNames from "classnames";
-
 import T from "prop-types";
 import { productType } from "../../common/propTypes";
 
 import Loading from "../../components/Loading";
 import MainNav from "./Components/AdminNav";
 import AdminSideNav from "./Components/SideNav";
-import Dashboard from "./Components/Dashboard";
-import UsersListContainer from "./UsersList/UsersListContainer";
-import ProductPage from "./ProductPage/ProductsPage";
+
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import UsersListContainer from "./Pages/UsersList/UsersListContainer";
+import ProductPage from "./Pages/ProductsList/ProductsPage";
 import Footer from "./Components/Footer";
 
 const AdminPage = ({
   toggleSidebar,
-  handleToggleSidebar,
+  onToggleSidebar,
   loading,
-  productsCount
+  productsCount,
+  usersCount,
+  currentUser
 }) => {
   // prettier-ignore
   let sidebar = classNames("sidebar sidebar-offcanvas",{"active": toggleSidebar });
 
   return (
     <div className="page-wrapper">
-      <MainNav handleToggleSidebar={handleToggleSidebar} />
+      <MainNav onToggleSidebar={onToggleSidebar} />
       {loading ? (
         <Loading />
       ) : (
@@ -37,11 +39,6 @@ const AdminPage = ({
             <div className="content-wrapper">
               <Switch>
                 <Route
-                  path={routes.admin}
-                  exact
-                  render={() => <Dashboard productsCount={productsCount} />}
-                />
-                <Route
                   path={routes.adminProductList}
                   render={renderProps => <ProductPage {...renderProps} />}
                 />
@@ -49,6 +46,15 @@ const AdminPage = ({
                   path={routes.adminUsersList}
                   render={renderProps => (
                     <UsersListContainer {...renderProps} />
+                  )}
+                />
+                <Route
+                  path={routes.admin}
+                  render={() => (
+                    <Dashboard
+                      productsCount={productsCount}
+                      usersCount={usersCount}
+                    />
                   )}
                 />
               </Switch>

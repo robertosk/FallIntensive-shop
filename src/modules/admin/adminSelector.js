@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-const getProductIds = state => state.adminProducts.products;
+const getProductIds = state => state.admin.products;
 const getProductEntities = state => state.entities.products;
 
 export const getProducts = createSelector(

@@ -4,8 +4,9 @@ import NewsLetter from "../Sections/NewsLetter";
 import SingleStoreItem from "../Sections/components/SingleStoreItem";
 import AsidePanel from "../Sections/AsidePanel";
 import StoreFilter from "../Sections/components/StoreFilter";
+import Pagination from "../Sections/components/Pagination";
 
-const StorePage = ({ products, onAddToCart }) => {
+const StorePage = ({ products, onAddToCart, onPageChanged }) => {
   return (
     <>
       <Breadcrumb itemsCount={products.length} />
@@ -28,25 +29,13 @@ const StorePage = ({ products, onAddToCart }) => {
                   );
                 })}
               </div>
-              <div className="store-filter clearfix">
-                <span className="store-qty">Showing 20-100 products</span>
-                <ul className="store-pagination">
-                  <li className="active">1</li>
-                  <li>
-                    <a href="#">2</a>
-                  </li>
-                  <li>
-                    <a href="#">3</a>
-                  </li>
-                  <li>
-                    <a href="#">4</a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="mdi mdi-chevron-right" />
-                    </a>
-                  </li>
-                </ul>
+              <div className="store-filter">
+                <Pagination
+                  totalRecords={products.length}
+                  pageLimit={6}
+                  pageNeighbours={1}
+                  onPageChanged={onPageChanged}
+                />
               </div>
             </div>
           </div>

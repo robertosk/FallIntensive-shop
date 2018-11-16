@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../vendor/shopTemplate/style.scss";
 import { connect } from "react-redux";
+import { compose, withState, withHandlers, lifecycle } from "recompose";
 
 import * as productOperations from "../../modules/products/productsOperations";
 import * as productsSelectors from "../../modules/products/productsSelectors";
@@ -8,25 +9,14 @@ import * as cartActions from "../../modules/cart/cartActions";
 
 import ShopPageView from "./ShopPageView";
 
-class ShopPage extends Component {
-  previousLocation = this.props.location;
-  componentDidMount() {
-    this.props.fetchProducts();
-  }
-  componentWillUpdate(nextProps) {
-    let { location } = this.props;
-
-    if (
-      nextProps.history.action !== "POP" &&
-      (!location.state || !location.state.cartModal)
-    ) {
-      this.previousLocation = this.props.location;
-    }
-  }
-  render() {
-    return <ShopPageView {...this.props} {...this.state} />;
-  }
-}
+const ShopPage = props => {
+  let cartModal = !!(
+    props.location.state &&
+    props.location.state.cartModal &&
+    props.previousLocation !== props.location
+  );
+  return <ShopPageView cartModal={cartModal} {...props} />;
+};
 
 const mapStateToProps = state => ({
   products: productsSelectors.getProducts(state),
@@ -39,8 +29,37 @@ const mapStateToDispatch = {
   fetchProducts: productOperations.fetchProducts,
   addToCart: cartActions.add
 };
+const enhance = compose(
+  withState("previousLocation", "handleLocation", null),
+  connect(
+    mapStateToProps,
+    mapStateToDispatch
+  ),
+  withHandlers({
+    onHandleLocation: props => location => {
+      props.handleLocation(location);
+    },
+    closeCartModal: props => e => {
+      e.stopPropagation();
+      props.history.goBack();
+    }
+  }),
+  lifecycle({
+    componentDidMount() {
+      this.props.fetchProducts();
+      this.props.onHandleLocation(this.props.location);
+    },
 
-export default connect(
-  mapStateToProps,
-  mapStateToDispatch
-)(ShopPage);
+    componentWillUpdate(props) {
+      let { location } = props;
+      if (
+        props.history.action !== "POP" &&
+        (!location.state || !location.state.cartModal)
+      ) {
+        props.handleLocation(location);
+      }
+    }
+  })
+);
+
+export default enhance(ShopPage);

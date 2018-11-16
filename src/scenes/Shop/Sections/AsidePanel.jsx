@@ -1,5 +1,4 @@
 import React from "react";
-import TopSellingWidget from "./TopSellingWidget";
 
 const AsidePanel = ({ products }) => {
   return (
@@ -131,9 +130,6 @@ const AsidePanel = ({ products }) => {
             </label>
           </div>
         </div>
-      </div>
-      <div className="aside">
-        <TopSellingWidget products={products} />
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { routes } from "../../../routes";
-const Dashboard = ({ productsCount }) => {
+import { routes } from "../../../../routes";
+
+const Dashboard = ({ productsCount, usersCount }) => {
   return (
     <>
       <h2 className="px-4">Dashboard</h2>
@@ -32,6 +33,33 @@ const Dashboard = ({ productsCount }) => {
             </div>
           </div>
         </Link>
+        <Link
+          to={routes.adminUsersList}
+          className="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card"
+        >
+          <div className="card card-statistics">
+            <div className="card-body">
+              <div className="clearfix">
+                <div className="float-left">
+                  <i className="mdi mdi-account-location text-info icon-lg" />
+                </div>
+                <div className="float-right">
+                  <p className="mb-0 text-right">Employees</p>
+                  <div className="fluid-container">
+                    <h3 className="font-weight-medium text-right mb-0">
+                      {usersCount}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <p className="text-muted mt-3 mb-0">
+                <i className="mdi mdi-reload mr-1" aria-hidden="true" />{" "}
+                Product-wise sales
+              </p>
+            </div>
+          </div>
+        </Link>
+
         <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
           <div className="card card-statistics">
             <div className="card-body">
@@ -73,27 +101,6 @@ const Dashboard = ({ productsCount }) => {
               <p className="text-muted mt-3 mb-0">
                 <i className="mdi mdi-calendar mr-1" aria-hidden="true" />{" "}
                 Weekly Sales
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-          <div className="card card-statistics">
-            <div className="card-body">
-              <div className="clearfix">
-                <div className="float-left">
-                  <i className="mdi mdi-account-location text-info icon-lg" />
-                </div>
-                <div className="float-right">
-                  <p className="mb-0 text-right">Employees</p>
-                  <div className="fluid-container">
-                    <h3 className="font-weight-medium text-right mb-0">246</h3>
-                  </div>
-                </div>
-              </div>
-              <p className="text-muted mt-3 mb-0">
-                <i className="mdi mdi-reload mr-1" aria-hidden="true" />{" "}
-                Product-wise sales
               </p>
             </div>
           </div>

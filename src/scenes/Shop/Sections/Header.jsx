@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+import * as appOperations from "../../../modules/app/appOperations";
 import { routes } from "../../../routes";
 import { Link } from "react-router-dom";
+import SearchComponent from "./components/SearchComponent";
 
-const Header = ({ cartItemsCount }) => {
+const Header = ({ cartItemsCount, currentUser, logOutUser, isLoggedIn }) => {
   return (
     <header>
       <div id="header" className="py-4">
@@ -15,10 +17,7 @@ const Header = ({ cartItemsCount }) => {
             </Link>
           </div>
           <div className="header-search">
-            <div className="search-form">
-              <input className="input" placeholder="Search here" />
-              <button className="search-btn">Search</button>
-            </div>
+            <SearchComponent />
           </div>
           <div className=" d-flex">
             <ul className="navbar-nav navbar-nav-right d-flex flex-row">
@@ -47,43 +46,54 @@ const Header = ({ cartItemsCount }) => {
                   )}
                 </Link>
               </li>
-              <li className="mx-3 nav-item dropdown">
-                <Link className="nav-link" to={routes.login}>
-                  <i className="mdi mdi-account-circle" />
-                  <br />
-                  <span>Login</span>
-                </Link>
-              </li>
-              <li className="mx-3nav-item dropdown ">
-                <a
-                  className="nav-link dropdown-toggle"
-                  id="UserDropdown"
-                  href="#"
-                  data-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <span className="profile-text d-none d-lg-inline-block mr-2">
-                    Welcome, User Userovich !
-                  </span>
-                  <img
-                    className="img-xs rounded-circle"
-                    src="../assets/images/faces/face1.jpg"
-                    alt="Profile"
-                  />
-                </a>
-                <div
-                  className="dropdown-menu dropdown-menu-right navbar-dropdown user-dropdown"
-                  aria-labelledby="UserDropdown"
-                >
-                  <Link className="dropdown-item mt-2" to={routes.admin}>
-                    Admin page
+              {!isLoggedIn ? (
+                <li className="mx-3 nav-item dropdown">
+                  <Link className="nav-link" to={routes.login}>
+                    <i className="mdi mdi-account-circle" />
+                    <br />
+                    <span>Login</span>
                   </Link>
-                  <a className="dropdown-item ">Manage Account</a>
-                  <Link className="dropdown-item" to={routes.home}>
-                    Sign out
-                  </Link>
-                </div>
-              </li>
+                </li>
+              ) : (
+                <li className="mx-3nav-item dropdown ">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    id="UserDropdown"
+                    href="#"
+                    data-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <img
+                      className="img-xs rounded-circle"
+                      src="../assets/images/faces/face1.jpg"
+                      alt="Profile"
+                    />
+                    <br />
+                    <span className="profile-text d-none d-lg-inline-block mr-2">
+                      Welcome,
+                      {`${currentUser.firstName} ${currentUser.lastName}`} !
+                    </span>
+                  </a>
+                  <div
+                    className="dropdown-menu dropdown-menu-right navbar-dropdown user-dropdown"
+                    aria-labelledby="UserDropdown"
+                  >
+                    {currentUser.role === "admin" && (
+                      <Link className="dropdown-item mt-2" to={routes.admin}>
+                        Admin page
+                      </Link>
+                    )}
+
+                    <Link
+                      className="dropdown-item"
+                      onClick={() => logOutUser()}
+                      to={routes.home}
+                    >
+                      Sign out
+                    </Link>
+                  </div>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -92,7 +102,15 @@ const Header = ({ cartItemsCount }) => {
   );
 };
 const mapStateToProps = state => ({
-  cartItemsCount: state.cart.items.length
+  cartItemsCount: state.cart.items.length,
+  currentUser: state.app.currentUser,
+  isLoggedIn: state.app.loggedIn
 });
+const mapStateToDispatch = {
+  logOutUser: appOperations.logOut
+};
 
-export default connect(mapStateToProps)(Header);
+export default connect(
+  mapStateToProps,
+  mapStateToDispatch
+)(Header);

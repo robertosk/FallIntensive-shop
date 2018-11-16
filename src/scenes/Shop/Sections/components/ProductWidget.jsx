@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { routes } from "../../../../routes";
 import { formatRoute } from "react-router-named-routes";
 
-const ProductWidget = ({ product, removeFromCart }) => {
+const ProductWidget = ({ product, removeFromCart, qtyDown, qtyUp }) => {
   if (!product) {
     return null;
   }
@@ -26,7 +26,28 @@ const ProductWidget = ({ product, removeFromCart }) => {
             </span>
           </h3>
           <h4 className="product-price d-flex justify-content-between">
-            <span className="qty">1x</span>
+            <span className="qty">
+              <button
+                className="btn btn-link btn-sm"
+                onClick={e => {
+                  e.preventDefault();
+                  return qtyDown(product);
+                }}
+              >
+                -
+              </button>
+              {product.quantity}x
+              <button
+                className="btn btn-link btn-sm"
+                onClick={e => {
+                  e.preventDefault();
+                  return qtyUp(product);
+                }}
+              >
+                +
+              </button>
+            </span>
+
             <span>
               <i className="mdi mdi-currency-usd mx-0" />
               {product.price}

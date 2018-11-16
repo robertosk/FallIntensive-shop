@@ -4,7 +4,14 @@ import ProductWidget from "../components/ProductWidget";
 import * as cartSelector from "../../../../modules/cart/cartSelectors";
 import * as cartActions from "../../../../modules/cart/cartActions";
 
-const CartWidget = ({ items, totalPrice, removeFromCart }) => {
+const CartWidget = ({
+  items,
+  totalPrice,
+  removeFromCart,
+  quantities,
+  qtyUp,
+  qtyDown
+}) => {
   return (
     <div className="order-summary">
       {items.length !== 0 ? (
@@ -22,6 +29,9 @@ const CartWidget = ({ items, totalPrice, removeFromCart }) => {
               <ProductWidget
                 key={`cart_${item.id}`}
                 product={item}
+                quantities={quantities}
+                qtyUp={qtyUp}
+                qtyDown={qtyDown}
                 removeFromCart={removeFromCart}
               />
             ))}
@@ -55,9 +65,13 @@ const mapStateToProps = state => ({
   items: cartSelector.getProducts(state),
   totalPrice: cartSelector.getTotalPrice(state)
 });
+
 const mapStateToDispatch = {
+  qtyUp: cartActions.qtyUp,
+  qtyDown: cartActions.qtyDown,
   removeFromCart: cartActions.remove
 };
+
 export default connect(
   mapStateToProps,
   mapStateToDispatch

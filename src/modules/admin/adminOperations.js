@@ -1,7 +1,7 @@
 import { normalize } from "normalizr";
 import * as Api from "../../api/Api";
 import * as schema from "../../api/schemes";
-import * as actions from "./adminProductsActions";
+import * as actions from "./adminActions";
 
 export const fetchProducts = () => async dispatch => {
   try {
@@ -67,5 +67,39 @@ export const removeProduct = product => async dispatch => {
     }
   } catch (err) {
     dispatch(actions.addProductError(err.message));
+  }
+};
+
+export const fetchUsers = () => async dispatch => {
+  try {
+    dispatch(actions.fetchUsersStart());
+    const res = await Api.User.fetchUsers();
+    dispatch(
+      actions.fetchUsersOk({
+        users: res.data
+      })
+    );
+  } catch (err) {
+    dispatch(actions.fetchUsersError(err.message));
+  }
+};
+
+export const editUserRole = user => async dispatch => {
+  try {
+    dispatch(actions.editUserStart());
+    await Api.User.editUser(user);
+    dispatch(actions.editUserOk());
+  } catch (err) {
+    dispatch(actions.editUserError(err));
+  }
+};
+
+export const removeUser = userId => async dispatch => {
+  try {
+    dispatch(actions.removeUserStart());
+    await Api.User.deleteUser(userId);
+    dispatch(actions.removeUserOk({ id: userId }));
+  } catch (err) {
+    dispatch(actions.removeUserError(err));
   }
 };

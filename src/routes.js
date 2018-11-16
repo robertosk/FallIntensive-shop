@@ -2,16 +2,15 @@ export const routes = {
   admin: "/admin",
   adminProductList: "/admin/products",
   adminProduct: "/admin/products/:id",
-  adminProductAdd: "/admin/products/add",
   adminUsersList: "/admin/users",
   adminUser: "/admin/user/:id",
-  adminUserAdd: "/admin/user/add",
 
   home: "/",
   productList: "/products",
   product: "/products/:id",
 
   login: "/auth",
+  register: "/auth/register",
   remember: "/auth/remember",
 
   userAccount: "user/:id",

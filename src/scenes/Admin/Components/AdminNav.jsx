@@ -1,8 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import { routes } from "../../../routes";
 import { Link } from "react-router-dom";
 
-const MainNav = ({ handleToggleSidebar }) => {
+const MainNav = ({ onToggleSidebar, currentUser }) => {
   return (
     <>
       <nav className="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -185,7 +186,11 @@ const MainNav = ({ handleToggleSidebar }) => {
                 aria-expanded="false"
               >
                 <span className="profile-text d-none d-xl-inline-block">
-                  Hello, Admin Adminovich !
+                  Hello,
+                  <span className="text-uppercase">
+                    {`${currentUser.firstName} ${currentUser.lastName}`}
+                  </span>
+                  !
                 </span>
                 <img
                   className="img-xs rounded-circle"
@@ -223,7 +228,7 @@ const MainNav = ({ handleToggleSidebar }) => {
             className="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
             type="button"
             data-toggle="offcanvas"
-            onClick={handleToggleSidebar}
+            onClick={onToggleSidebar}
           >
             <span className="mdi mdi-menu" />
           </button>
@@ -233,4 +238,7 @@ const MainNav = ({ handleToggleSidebar }) => {
   );
 };
 
-export default MainNav;
+const mapStateToProps = state => ({
+  currentUser: state.app.currentUser
+});
+export default connect(mapStateToProps)(MainNav);

@@ -1,6 +1,10 @@
 import _ from "lodash";
 
 export function sortProducts(products, orderBy, orderType) {
+  console.log("==pr=", products);
+  console.log(orderBy);
+  console.log("==", orderType);
+
   return _.orderBy(products, orderBy, orderType);
 }
 

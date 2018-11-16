@@ -22,27 +22,20 @@ import ContactUsPage from "./Pages/ContactUsPage";
 import OrdersAndReturnsPage from "./Pages/OrdersAndReturnsPage";
 import UserPage from "./Pages/UserPage";
 import WishListPage from "./Pages/WishListPage";
+import AuthPage from "./Pages/AuthPage";
 
 const ShopPageView = ({
   match,
   products,
   addToCart,
-  history,
+  cartModal,
   isLoading,
   isError,
   error,
   location,
-  previousLocation
+  previousLocation,
+  closeCartModal
 }) => {
-  let cartModal = !!(
-    location.state &&
-    location.state.cartModal &&
-    previousLocation !== location
-  );
-  function toggleCartModal(e) {
-    e.stopPropagation();
-    history.goBack();
-  }
   if (isLoading) {
     return <Loading />;
   }
@@ -55,24 +48,12 @@ const ShopPageView = ({
       </>
     );
   }
-
   return (
     <>
       <Header />
       <MainNav />
       <main>
         <Switch location={cartModal ? previousLocation : location}>
-          <Route
-            exact
-            path={`${match.url}`}
-            render={renderProps => (
-              <HomePage
-                {...renderProps}
-                products={products}
-                onAddToCart={addToCart}
-              />
-            )}
-          />
           <Route
             exact
             path={routes.productList}
@@ -94,8 +75,9 @@ const ShopPageView = ({
               />
             )}
           />
-          <Route exact path={routes.card} component={CartPage} />
+          <Route path={routes.card} component={CartPage} />
           <Route path={routes.cartCheckout} component={CheckoutPage} />
+          <Route path={routes.login} component={AuthPage} />
           <Route path={routes.termsAndConditions} component={TermsPage} />
           <Route path={routes.privacyPolicy} component={PrivacyPolicePage} />
           <Route path={routes.contactUs} component={ContactUsPage} />
@@ -109,6 +91,17 @@ const ShopPageView = ({
             path={routes.about}
             render={renderProps => <AboutPage {...renderProps} />}
           />
+          <Route
+            exact
+            path={`${match.url}`}
+            render={renderProps => (
+              <HomePage
+                {...renderProps}
+                products={products}
+                onAddToCart={addToCart}
+              />
+            )}
+          />
           <Route path="*" component={Page404} />
         </Switch>
         {cartModal ? (
@@ -117,7 +110,7 @@ const ShopPageView = ({
             render={props => (
               <CartModal
                 cartModal={cartModal}
-                toggleCartModal={toggleCartModal}
+                toggleCartModal={closeCartModal}
               />
             )}
           />
