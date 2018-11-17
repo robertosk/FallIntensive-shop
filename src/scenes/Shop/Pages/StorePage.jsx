@@ -1,12 +1,25 @@
 import React from "react";
 import Breadcrumb from "../Sections/components/Breadcrumb";
 import NewsLetter from "../Sections/NewsLetter";
-import SingleStoreItem from "../Sections/components/SingleStoreItem";
 import AsidePanel from "../Sections/AsidePanel";
 import StoreFilter from "../Sections/components/StoreFilter";
-import Pagination from "../Sections/components/Pagination";
+import _ from "lodash";
+import { compose, withState, withHandlers } from "recompose";
+import { searchProducts } from "../../../utils/search";
+import ProductsGrid from "../Sections/components/ProductsGrid";
 
-const StorePage = ({ products, onAddToCart, onPageChanged }) => {
+const StorePage = ({
+  products,
+  onAddToCart,
+  orderBy,
+  orderType,
+  doOrder,
+  query,
+  shownItems,
+  showItems
+}) => {
+  let productsToView = _.orderBy(products, orderBy, orderType);
+  productsToView = searchProducts(productsToView, query);
   return (
     <>
       <Breadcrumb itemsCount={products.length} />
@@ -16,27 +29,17 @@ const StorePage = ({ products, onAddToCart, onPageChanged }) => {
             <AsidePanel products={products} />
 
             <div id="store" className="col-md-9">
-              <StoreFilter />
-              <div className="row">
-                {products.map(product => {
-                  return (
-                    <div key={product.id} className="col-md-4 col-xs-6">
-                      <SingleStoreItem
-                        product={product}
-                        onAddToCart={onAddToCart}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="store-filter">
-                <Pagination
-                  totalRecords={products.length}
-                  pageLimit={6}
-                  pageNeighbours={1}
-                  onPageChanged={onPageChanged}
-                />
-              </div>
+              <StoreFilter
+                orderBy={orderBy}
+                doOrder={doOrder}
+                shownItems={shownItems}
+                showItems={showItems}
+              />
+              <ProductsGrid
+                products={productsToView}
+                onAddToCart={onAddToCart}
+                shownItems={shownItems}
+              />
             </div>
           </div>
         </div>
@@ -45,5 +48,18 @@ const StorePage = ({ products, onAddToCart, onPageChanged }) => {
     </>
   );
 };
-
-export default StorePage;
+const enhance = compose(
+  withState("orderBy", "handleOrderBy", "title"),
+  withState("orderType", "handleOrderType", "asc"),
+  withState("shownItems", "handleShownItems", "9"),
+  withHandlers({
+    doOrder: props => (orderBy, orderType) => {
+      props.handleOrderBy(orderBy);
+      props.handleOrderType(orderType);
+    },
+    showItems: props => count => {
+      props.handleShownItems(count);
+    }
+  })
+);
+export default enhance(StorePage);

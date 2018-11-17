@@ -13,6 +13,7 @@ export const getProducts = createSelector(
         : Object.assign(entities[item], { quantity: quantities[item] })
     )
 );
+
 export const getTotalPrice = createSelector(
   [getProducts, getQuantities],
   (items, quantities) =>

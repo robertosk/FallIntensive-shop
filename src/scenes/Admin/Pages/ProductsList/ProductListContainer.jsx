@@ -65,11 +65,9 @@ const enhance = compose(
       props.removeProduct(props.selectedProduct);
       props.handleRemoveModal(!props.removeModalStatus);
     },
-    doOrderType: props => orderType => {
-      props.handleOrderType(orderType);
-    },
-    doOrderBy: props => orderBy => {
+    doOrder: props => (orderBy, orderType) => {
       props.handleOrderBy(orderBy);
+      props.handleOrderType(orderType);
     },
     doSearch: props => searchQuery => {
       props.handleSearch(searchQuery);

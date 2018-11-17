@@ -26,6 +26,7 @@ import AuthPage from "./Pages/AuthPage";
 
 const ShopPageView = ({
   match,
+  history,
   products,
   addToCart,
   cartModal,
@@ -36,10 +37,10 @@ const ShopPageView = ({
   previousLocation,
   closeCartModal
 }) => {
+  let search = new URLSearchParams(location.search);
   if (isLoading) {
     return <Loading />;
   }
-
   if (isError) {
     return (
       <>
@@ -50,7 +51,7 @@ const ShopPageView = ({
   }
   return (
     <>
-      <Header />
+      <Header location={location} />
       <MainNav />
       <main>
         <Switch location={cartModal ? previousLocation : location}>
@@ -60,6 +61,7 @@ const ShopPageView = ({
             render={renderProps => (
               <Store
                 {...renderProps}
+                query={search.get("query")}
                 products={products}
                 onAddToCart={addToCart}
               />

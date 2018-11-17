@@ -4,6 +4,8 @@ import ProductListItem from "./ProductListItem";
 import EditModal from "./modals/EditModal";
 import RemoveModal from "./modals/RemoveModal";
 import Loading from "../../../../components/Loading";
+import _ from "lodash";
+import { searchProducts } from "../../../../utils/search";
 
 const productsView = ({
   isLoading,
@@ -11,19 +13,20 @@ const productsView = ({
   selectedProduct,
   editModalStatus,
   removeModalStatus,
-  // orderType,
-  // orderBy,
-  // searchQuery,
+  orderType,
+  orderBy,
+  searchQuery,
 
   onToggleEditModal,
   onToggleRemoveModal,
 
   onSubmitEdit,
-  onSubmitRemove
-  // doOrderType,
-  // doOrderBy,
-  // doSearch
+  onSubmitRemove,
+  doOrder,
+  doSearch
 }) => {
+  let productsToView = _.orderBy(products, orderBy, orderType);
+  productsToView = searchProducts(productsToView, searchQuery);
   return (
     <>
       {isLoading ? (
@@ -41,13 +44,23 @@ const productsView = ({
               <i className="mdi mdi-plus  m-0" />
             </button>
           </h2>
-          {/* <div className="d-flex justify-content-between">
-            <input
-              className="form-control mr-sm-2 border border-primary"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
+          <div className="d-flex justify-content-between">
+            <div class="input-group border border-primary">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i className="mdi mdi-magnify" />
+                </div>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                id="search"
+                placeholder="Search"
+                value={searchQuery}
+                onChange={e => doSearch(e.target.value)}
+              />
+            </div>
+
             <div className="btn-group">
               <button
                 type="button"
@@ -56,43 +69,56 @@ const productsView = ({
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Sort by {orderType}
+                Order by {orderBy}
               </button>
               <div className="dropdown-menu">
-                <a className="dropdown-item" onClick={() => doOrderType("asc")}>
-                  Ascending
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={e => {
+                    e.stopPropagation();
+                    doOrder("price", "asc");
+                  }}
+                >
+                  Expensive
                 </a>
                 <a
                   className="dropdown-item"
-                  onClick={() => doOrderType("desc")}
+                  href="#"
+                  onClick={e => {
+                    e.stopPropagation();
+                    doOrder("price", "desc");
+                  }}
                 >
-                  Descending
+                  Cheaper
+                </a>
+                <div className="dropdown-divider" />
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={e => {
+                    e.stopPropagation();
+                    doOrder("title", "asc");
+                  }}
+                >
+                  Name up
+                </a>
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={e => {
+                    e.stopPropagation();
+                    doOrder("title", "desc");
+                  }}
+                >
+                  Name down
                 </a>
               </div>
             </div>
-            <div className="btn-group">
-              <button
-                type="button"
-                className="btn btn-outline-primary dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Sort by {orderBy}
-              </button>
-              <div className="dropdown-menu">
-                <a className="dropdown-item" onClick={() => doOrderBy("title")}>
-                  Title
-                </a>
-                <a className="dropdown-item" onClick={() => doOrderBy("price")}>
-                  Price
-                </a>
-              </div>
-            </div>
-          </div> */}
+          </div>
           <div className="list-group">
-            {products.length > 0 ? (
-              products.map(pr => (
+            {productsToView.length > 0 ? (
+              productsToView.map(pr => (
                 <ProductListItem
                   key={pr.id}
                   product={pr}

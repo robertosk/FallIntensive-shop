@@ -27,6 +27,9 @@ const enhance = compose(
   ),
   withState("removeModalStatus", "handleRemoveModal", false),
   withState("selectedUser", "handleSelectUser", null),
+  withState("orderType", "handleOrderType", "ASC"),
+  withState("orderBy", "handleOrderBy", "email"),
+  withState("searchQuery", "handleSearch", ""),
 
   withHandlers({
     selectUser: props => user => {
@@ -45,6 +48,13 @@ const enhance = compose(
     submitRemoveUser: props => userId => {
       props.handleRemoveModal(!props.removeModalStatus);
       props.removeUser(userId);
+    },
+    doOrder: props => (orderBy, orderType) => {
+      props.handleOrderBy(orderBy);
+      props.handleOrderType(orderType);
+    },
+    doSearch: props => searchQuery => {
+      props.handleSearch(searchQuery);
     }
   })
 );

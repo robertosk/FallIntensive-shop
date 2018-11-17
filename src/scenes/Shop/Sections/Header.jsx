@@ -5,7 +5,13 @@ import { routes } from "../../../routes";
 import { Link } from "react-router-dom";
 import SearchComponent from "./components/SearchComponent";
 
-const Header = ({ cartItemsCount, currentUser, logOutUser, isLoggedIn }) => {
+const Header = ({
+  cartItemsCount,
+  currentUser,
+  logOutUser,
+  isLoggedIn,
+  location
+}) => {
   return (
     <header>
       <div id="header" className="py-4">
@@ -17,7 +23,7 @@ const Header = ({ cartItemsCount, currentUser, logOutUser, isLoggedIn }) => {
             </Link>
           </div>
           <div className="header-search">
-            <SearchComponent />
+            <SearchComponent location={location} />
           </div>
           <div className=" d-flex">
             <ul className="navbar-nav navbar-nav-right d-flex flex-row">

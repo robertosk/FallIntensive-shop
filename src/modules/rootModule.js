@@ -6,9 +6,9 @@ import entities from "./entities/entitiesReducer";
 import admin from "./admin/adminReducer";
 
 export default combineReducers({
-  products,
   app,
-  cart,
+  admin,
+  products,
   entities,
-  admin
+  cart
 });

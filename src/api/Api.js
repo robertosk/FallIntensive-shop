@@ -35,6 +35,10 @@ export const Products = {
   },
   deleteProduct(id) {
     return axios.delete(`${apiPath}/products/${id}`);
+  },
+  getProductsByIds(ids) {
+    const query = ids.join("&ids[]=");
+    return axios.get(`${apiPath}/products?ids[]=${query}`);
   }
 };
 

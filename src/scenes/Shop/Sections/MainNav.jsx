@@ -1,6 +1,6 @@
 import React from "react";
-import { routes } from "../../../routes";
 import { Link } from "react-router-dom";
+import { mainNav } from "../../../data/navigations";
 
 const MainNav = () => {
   return (
@@ -21,31 +21,13 @@ const MainNav = () => {
 
           <div className="collapse navbar-collapse" id="main-nav">
             <ul className="main-nav navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link to={routes.productList} className="nav-link">
-                  Store
-                </Link>
-              </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link">
-                  Categories
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link">
-                  Laptops
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link">
-                  Smartphones
-                </a>
-              </li>
-              <li className="nav-item">
-                <Link to={routes.about} className="nav-link">
-                  About
-                </Link>
-              </li>
+              {mainNav.map((item, index) => (
+                <li key={`mainNav${index}`} className="nav-item">
+                  <Link to={item.link} className="nav-link">
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

@@ -3,21 +3,18 @@ import { routes } from "../routes";
 export const mainNav = [
   {
     id: uuid(),
-    title: "products",
-    link: routes.productList,
-    disabled: false
+    title: "Products",
+    link: routes.productList
   },
   {
     id: uuid(),
     title: "Laptops",
-    link: "",
-    disabled: true
+    link: routes.productList
   },
   {
     id: uuid(),
     title: "Smartphones",
-    link: "",
-    disabled: true
+    link: routes.productList
   }
 ];
 export const infoNav = [

@@ -9,7 +9,10 @@ const SingleStoreItem = ({ product = createProduct, onAddToCart }) => {
   return (
     <div className="product">
       <div className="product-img">
-        <img src={product.image} alt="" />
+        <img
+          src={product.image ? product.image : "./assets/phone_clipart.jpg"}
+          alt=""
+        />
         {false && (
           <div className="product-label">
             <span className="sale">-30%</span>
