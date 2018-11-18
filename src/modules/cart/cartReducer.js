@@ -9,6 +9,9 @@ const initialState = {
 
 export default handleActions(
   {
+    [constants.FETCH_DATA]: (state, actions) => ({
+      ...state
+    }),
     [constants.ADD]: (state, actions) => ({
       ...state,
       items:

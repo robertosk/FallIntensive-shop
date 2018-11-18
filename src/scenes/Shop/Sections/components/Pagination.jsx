@@ -7,13 +7,10 @@ import {
   defaultProps
 } from "recompose";
 
-const Pagination = ({ pager, setPage, shownItems }) => {
+const Pagination = ({ pager, setPage }) => {
   if (!pager.pages || pager.pages.length <= 1) {
     return null;
   }
-  console.log("=shownItems=");
-  console.log(shownItems);
-  console.log("====================================");
   return (
     <>
       <ul className="pagination">

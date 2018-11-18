@@ -52,7 +52,7 @@ const ShopPageView = ({
   return (
     <>
       <Header location={location} />
-      <MainNav />
+      <MainNav location={location} />
       <main>
         <Switch location={cartModal ? previousLocation : location}>
           <Route

@@ -45,15 +45,15 @@ const productsView = ({
             </button>
           </h2>
           <div className="d-flex justify-content-between">
-            <div class="input-group border border-primary">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
+            <div className="input-group border border-primary">
+              <div className="input-group-prepend">
+                <div className="input-group-text">
                   <i className="mdi mdi-magnify" />
                 </div>
               </div>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="search"
                 placeholder="Search"
                 value={searchQuery}

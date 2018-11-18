@@ -26,7 +26,8 @@ export default handleActions(
       isLoading: false,
       error: actions.payload.message
     }),
-    // FETCH
+
+    // FETCH Products
     [constants.FETCH_PRODUCT_START]: state => ({
       ...state,
       isLoading: true,
@@ -43,7 +44,7 @@ export default handleActions(
       error: actions.payload.message
     }),
 
-    // ADD
+    // ADD Products
     [constants.ADD_PRODUCT_START]: state => ({
       ...state,
       isLoading: true,
@@ -95,6 +96,7 @@ export default handleActions(
       isLoading: false,
       error: action.payload.message
     }),
+
     // update User Role
     [constants.EDIT_USER_START]: state => ({
       ...state,

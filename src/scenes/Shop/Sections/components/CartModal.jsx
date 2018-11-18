@@ -4,12 +4,14 @@ import S from "../../../Admin/admin-style.module.css";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
 import { routes } from "../../../../routes";
+import classNames from "classnames";
 
+const modal = classNames("cart-modal", S.modalContent);
 const CartModal = ({ cartModal, toggleCartModal }) => {
   return (
     <Modal
       isOpen={cartModal}
-      className={S.modalContent}
+      className={modal}
       onRequestClose={e => toggleCartModal(e)}
       overlayClassName={S.modalOverlay}
       appElement={document.getElementById("root")}

@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { mainNav } from "../../../data/navigations";
+import SearchComponent from "./components/SearchComponent";
 
-const MainNav = () => {
+const MainNav = ({ location }) => {
   return (
     <>
       <nav className="navbar navbar-expand-md " id="navigation">
@@ -16,9 +17,12 @@ const MainNav = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon" />
+            <i className="mdi mdi-menu" />
           </button>
 
+          <div className="search-block  ">
+            <SearchComponent location={location} />
+          </div>
           <div className="collapse navbar-collapse" id="main-nav">
             <ul className="main-nav navbar-nav mr-auto">
               {mainNav.map((item, index) => (

@@ -15,7 +15,8 @@ const SearchComponent = ({ searchInput, onSearchInput, doSearch }) => {
           onKeyDown={e => e.key === "Enter" && doSearch()}
         />
         <button className="search-btn" onClick={doSearch}>
-          Search
+          <span className="search-label">Search</span>
+          <i className="mdi mdi-magnify" />
         </button>
       </div>
     </>

@@ -1,3 +1,4 @@
+export const FETCH_DATA = "cart/FETCH_DATA";
 export const ADD = "cart/ADD";
 export const QTY_UP = "cart/QTY_UP";
 export const QTY_DOWN = "cart/QTY_DOWN";

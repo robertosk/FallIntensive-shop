@@ -59,11 +59,7 @@ export const removeProduct = product => async dispatch => {
     dispatch(actions.removeProductStart());
     const res = await Api.Products.deleteProduct(product.id);
     if (res.data.success) {
-      const { result, entities } = normalize(
-        [product],
-        schema.ProductCollection
-      );
-      dispatch(actions.removeProductOk({ id: result.id, entities }));
+      dispatch(actions.removeProductOk({ id: product.id }));
     }
   } catch (err) {
     dispatch(actions.addProductError(err.message));

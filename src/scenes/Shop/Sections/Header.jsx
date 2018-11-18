@@ -15,36 +15,36 @@ const Header = ({
   return (
     <header>
       <div id="header" className="py-4">
-        <div className="d-flex align-items-top justify-content-between px-5">
+        <div className="header-container d-flex align-items-top justify-content-between">
           <div className="header-logo">
-            <Link className="mr-0" to={routes.home}>
+            <Link className=" mr-0" to={routes.home}>
               <img src="../assets/images/logo-red.gif" alt="R Admin" />
               <h3>eacted Shop</h3>
             </Link>
           </div>
-          <div className="header-search">
+          <div className="search-block d-none d-lg-block ">
             <SearchComponent location={location} />
           </div>
-          <div className=" d-flex">
+          <div className=" d-flex justify-content-between">
             <ul className="navbar-nav navbar-nav-right d-flex flex-row">
-              <li className="mx-3 nav-item  d-none d-sm-block">
+              {/* <li className="mx-3 nav-item  d-none d-sm-block">
                 <a className="nav-link " href="#">
                   <i className="mdi mdi-heart-outline" />
                   <br />
                   <span>Your Wishlist</span>
                 </a>
-              </li>
+              </li> */}
               <li className="mx-3 nav-item  ">
                 <Link
                   to={{
                     pathname: routes.card,
                     state: { cartModal: true }
                   }}
-                  className="nav-link count-indicator "
+                  className="nav-link count-indicator d-flex flex-column"
                 >
-                  <i className="mdi mdi-basket" />
-                  <br />
-                  <span>Your Cart</span>
+                  <i className="mdi mdi-cart" />
+
+                  <span className="d-none d-lg-inline-block">Your Cart</span>
                   {cartItemsCount > 0 ? (
                     <span className="count">{cartItemsCount}</span>
                   ) : (
@@ -54,16 +54,19 @@ const Header = ({
               </li>
               {!isLoggedIn ? (
                 <li className="mx-3 nav-item dropdown">
-                  <Link className="nav-link" to={routes.login}>
+                  <Link
+                    className="nav-link d-flex flex-column"
+                    to={routes.login}
+                  >
                     <i className="mdi mdi-account-circle" />
-                    <br />
-                    <span>Login</span>
+
+                    <span className="d-none d-lg-inline-block">Login</span>
                   </Link>
                 </li>
               ) : (
-                <li className="mx-3nav-item dropdown ">
+                <li className="mx-3 nav-item dropdown ">
                   <a
-                    className="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle d-flex flex-column align-items-center"
                     id="UserDropdown"
                     href="#"
                     data-toggle="dropdown"
@@ -74,7 +77,6 @@ const Header = ({
                       src="../assets/images/faces/face1.jpg"
                       alt="Profile"
                     />
-                    <br />
                     <span className="profile-text d-none d-lg-inline-block mr-2">
                       Welcome,
                       {`${currentUser.firstName} ${currentUser.lastName}`} !

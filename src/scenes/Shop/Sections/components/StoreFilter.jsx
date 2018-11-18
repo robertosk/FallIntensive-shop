@@ -109,16 +109,6 @@ const StoreFilter = ({ orderBy, doOrder, shownItems, showItems }) => {
           </div>
         </label>
       </div>
-      <ul className="store-grid">
-        <li className="active">
-          <i className="mdi mdi-grid" />
-        </li>
-        <li>
-          <a href="#">
-            <i className="mdi mdi-view-list" />
-          </a>
-        </li>
-      </ul>
     </div>
   );
 };
