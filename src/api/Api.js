@@ -1,6 +1,6 @@
 import axios from "axios";
 import store from "store2";
-const apiPath = "/api/v3";
+const apiPath = "https://fall-intencive-api.herokuapp.com/api/v3";
 
 let _token = null;
 

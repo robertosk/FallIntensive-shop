@@ -140,6 +140,5 @@
     "prop-types": "^15.6.2",
     "redux-devtools-extension": "^2.13.5",
     "sass-loader": "^7.1.0"
-  },
-  "proxy": "https://fall-intencive-api.herokuapp.com"
+  }
 }
