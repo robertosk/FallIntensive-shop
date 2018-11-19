@@ -1,8 +1,7 @@
 {
   "root": "build/",
-  "proxies": {
-    "/api/": {
-      "origin": "https://fall-intencive-api.herokuapp.com"
-    }
+  "clean_urls": false,
+  "routes": {
+    "/**": "index.html"
   }
 }
