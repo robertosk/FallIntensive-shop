@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import ProductWidget from "../components/ProductWidget";
 import * as cartSelector from "../../../../modules/cart/cartSelectors";
 import * as cartActions from "../../../../modules/cart/cartActions";
+import * as cartOperations from "../../../../modules/cart/cartOperations";
+import { lifecycle, compose } from "recompose";
 
 const CartWidget = ({
   items,
@@ -67,12 +69,21 @@ const mapStateToProps = state => ({
 });
 
 const mapStateToDispatch = {
+  getEntities: cartOperations.getEntitiesData,
   qtyUp: cartActions.qtyUp,
   qtyDown: cartActions.qtyDown,
   removeFromCart: cartActions.remove
 };
 
-export default connect(
-  mapStateToProps,
-  mapStateToDispatch
-)(CartWidget);
+const enhance = compose(
+  connect(
+    mapStateToProps,
+    mapStateToDispatch
+  ),
+  lifecycle({
+    componentDidMount() {
+      this.props.getEntities();
+    }
+  })
+);
+export default enhance(CartWidget);

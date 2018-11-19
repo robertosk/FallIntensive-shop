@@ -27,13 +27,6 @@ const Header = ({
           </div>
           <div className=" d-flex justify-content-between">
             <ul className="navbar-nav navbar-nav-right d-flex flex-row">
-              {/* <li className="mx-3 nav-item  d-none d-sm-block">
-                <a className="nav-link " href="#">
-                  <i className="mdi mdi-heart-outline" />
-                  <br />
-                  <span>Your Wishlist</span>
-                </a>
-              </li> */}
               <li className="mx-3 nav-item  ">
                 <Link
                   to={{
@@ -110,7 +103,7 @@ const Header = ({
   );
 };
 const mapStateToProps = state => ({
-  cartItemsCount: state.cart.items.length,
+  cartItemsCount: Object.keys(state.cart.quantities).length,
   currentUser: state.app.currentUser,
   isLoggedIn: state.app.loggedIn
 });

@@ -1,17 +1,31 @@
 import { createSelector } from "reselect";
+import _ from "lodash";
 
-const getProductsIds = state => state.cart.items;
-const getProductEntities = state => state.entities.products;
 const getQuantities = state => state.cart.quantities;
+const getProductEntities = state => {
+  let entities = null;
+  if (_.isEmpty(state.entities.products)) {
+    entities = state.cart.entities;
+  } else {
+    entities = state.entities.products;
+  }
+  return entities;
+};
+
+export const initCartEntities = createSelector(
+  [getQuantities, getProductEntities],
+  (quantities, entities) => Object.keys(quantities).map(id => entities[id])
+);
 
 export const getProducts = createSelector(
-  [getProductsIds, getProductEntities, getQuantities],
-  (ids, entities, quantities) =>
-    ids.map(item =>
-      entities["quantity"]
+  [getProductEntities, getQuantities],
+  (entities, quantities) => {
+    return Object.keys(quantities).map(item => {
+      return entities["quantity"]
         ? entities[item]
-        : Object.assign(entities[item], { quantity: quantities[item] })
-    )
+        : Object.assign(entities[item], { quantity: quantities[item] });
+    });
+  }
 );
 
 export const getTotalPrice = createSelector(
