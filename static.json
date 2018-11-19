@@ -6,7 +6,7 @@
   },
   "proxies": {
     "/api/": {
-      "origin": "https://fall-intencive-api.herokuapp.com"
+      "origin": "${API_URL}"
     }
   }
 }
