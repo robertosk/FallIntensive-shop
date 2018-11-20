@@ -20,13 +20,13 @@ const ShopPage = props => {
 
 const mapStateToProps = state => ({
   products: productsSelectors.getProducts(state),
-  isLoading: state.products.isLoading,
+  isLoading: state.app.isLoading,
   isError: !!state.products.error,
   error: state.products.error
 });
 
 const mapStateToDispatch = {
-  fetchProducts: productOperations.fetchProducts,
+  initPagination: productOperations.initPagination,
   addToCart: cartActions.add
 };
 const enhance = compose(
@@ -46,7 +46,6 @@ const enhance = compose(
   }),
   lifecycle({
     componentDidMount() {
-      this.props.fetchProducts();
       this.props.onHandleLocation(this.props.location);
     },
 

@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import FormInput from "../../../../components/FormInput";
 import { Form, Field } from "react-final-form";
 import { FORM_ERROR } from "final-form";
+import Loading from "../../../../components/Loading";
 
 function validate(values) {
   const errors = {};
@@ -23,7 +24,7 @@ function validate(values) {
   return errors;
 }
 
-const LoginContainer = ({ logIn, isLogged }) => {
+const LoginContainer = ({ logIn, isLogged, loading }) => {
   async function onSubmit(values, form) {
     try {
       logIn(values);
@@ -40,6 +41,9 @@ const LoginContainer = ({ logIn, isLogged }) => {
       handleSubmit();
     }
   };
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <>
       <Form
@@ -108,7 +112,8 @@ const LoginContainer = ({ logIn, isLogged }) => {
   );
 };
 const mapStateToProps = state => ({
-  isLogged: state.app.loggedIn
+  isLogged: state.app.loggedIn,
+  loading: state.app.loading
 });
 const mapStateToDispatch = {
   logIn: appOperations.logIn

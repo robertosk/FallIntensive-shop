@@ -19,7 +19,7 @@ const ProductListItem = ({
         <div className="col-md-1">
           <img
             className="img-sm  mb-4 mb-md-0"
-            src={product.image}
+            src={product.image ? product.image : "./assets/phone_clipart.jpg"}
             alt="profile "
           />
         </div>

@@ -26,7 +26,6 @@ import AuthPage from "./Pages/AuthPage";
 
 const ShopPageView = ({
   match,
-  history,
   products,
   addToCart,
   cartModal,

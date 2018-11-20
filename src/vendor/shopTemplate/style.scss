@@ -811,10 +811,11 @@ ol {
     padding: 5px 20px;
     height: 260px;
     max-height: 260px;
+    display: flex;
+    justify-content: center;
 
     > img {
-      max-width: 100%;
-      height: auto;
+      height: 100%;
     }
 
     .product-label {
@@ -1252,6 +1253,10 @@ ol {
       color: $white;
       font-weight: 500;
       cursor: default;
+
+      a {
+        color: $white;
+      }
     }
 
     a {
@@ -1271,14 +1276,27 @@ ol {
   max-height: 550px;
   overflow: hidden;
 
+  .slick-slider {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .slick-list {
+      width: 100%;
+    }
+  }
+
   .slick-prev {
-    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
     transform: translateX(-15px);
     left: 15px;
     opacity: 0;
     visibility: hidden;
-    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
     transition: .2s all;
+  }
+
+  .product-preview {
+    display: flex !important;
+    justify-content: center;
   }
 
   .slick-next {
@@ -1319,6 +1337,10 @@ ol {
   .product-preview {
     margin: 0 5px;
     border: 1px solid $color_mystic_approx;
+
+    img {
+      width: 100%;
+    }
 
     &.slick-current {
       border-color: $color_monza_approx;
@@ -2288,10 +2310,6 @@ textarea.input {
 .price-filter .input-number {
   display: inline-block;
   width: calc(50% - 7px);
-}
-
-.product-preview img {
-  width: 100%;
 }
 
 #newsletter.section {

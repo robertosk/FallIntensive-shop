@@ -6,7 +6,7 @@ import * as actions from "./adminActions";
 export const fetchProducts = () => async dispatch => {
   try {
     dispatch(actions.fetchProductStart());
-    const res = await Api.Products.fetchProducts();
+    const res = await Api.Products.fetchProducts(50, 0);
     const { result, entities } = normalize(res.data, schema.ProductCollection);
 
     dispatch(

@@ -9,4 +9,7 @@ export const getProducts = createSelector(
   (products, entities) => products.map(id => entities[id])
 );
 
-export const getProduct = createSelector(getProductByID, result => result);
+export const getProduct = createSelector(
+  getProductByID,
+  result => result
+);

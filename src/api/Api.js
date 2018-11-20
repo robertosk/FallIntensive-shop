@@ -18,12 +18,14 @@ export const removeToken = () => {
 export const initApi = () => {
   const token = store.local.get("token");
   setToken(token);
+  return !!token;
 };
 
 export const Products = {
-  fetchProducts() {
-    return axios.get(`${apiPath}/products`);
+  fetchProducts(limit, offset) {
+    return axios.get(`${apiPath}/products?limit=${limit}&offset=${offset}`);
   },
+
   fetchProductByID(id) {
     return axios.get(`${apiPath}/products/${id}`);
   },

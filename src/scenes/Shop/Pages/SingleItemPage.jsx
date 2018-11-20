@@ -1,14 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as productsSelector from "../../../modules/products/productsSelectors";
+import * as productsOperations from "../../../modules/products/productsOperations";
 import AddToCartBtn from "../Sections/components/AddToCartBtn";
 import SingleItemPageImages from "../Sections/components/SingleItemPageImages";
 import ReviewsList from "../Sections/ReviewsList";
-import { createProduct } from "../../../utils/creators";
+import Loading from "../../../components/Loading";
+import { compose, lifecycle } from "recompose";
 
-const SingleItemPage = ({ match, product = createProduct, onAddToCart }) => {
+const SingleItemPage = ({ product, onAddToCart, isLoading }) => {
   const images = new Array(product.image);
-
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="section">
       <div className="container">
@@ -345,7 +348,22 @@ const SingleItemPage = ({ match, product = createProduct, onAddToCart }) => {
 };
 
 const mapStateToProps = (state, props) => ({
-  product: productsSelector.getProduct(state, props.match.params.id)
+  product: state.products.singleProduct,
+  isLoading: state.products.isLoading
 });
+const mapStateToDispatch = {
+  fetchProduct: productsOperations.fetchProductByID
+};
 
-export default connect(mapStateToProps)(SingleItemPage);
+const enhance = compose(
+  connect(
+    mapStateToProps,
+    mapStateToDispatch
+  ),
+  lifecycle({
+    componentDidMount() {
+      this.props.fetchProduct(this.props.match.params.id);
+    }
+  })
+);
+export default enhance(SingleItemPage);

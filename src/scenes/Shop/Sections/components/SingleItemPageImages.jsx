@@ -2,9 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import { compose, lifecycle, withState, withHandlers } from "recompose";
 
-const SingleItemPageImages = props => {
-  const { images, navContainer, viewContainer } = props;
-
+const SingleItemPageImages = ({ images, navContainer, viewContainer }) => {
   const viewImage = {
     infinite: true,
     speed: 300,

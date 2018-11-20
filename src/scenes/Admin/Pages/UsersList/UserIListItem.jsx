@@ -10,21 +10,29 @@ const UserListItem = ({
   return (
     <div className="card">
       <div className="card-header" id={`heading-${user.id}`}>
-        <h5 className="mb-0">
-          <button
+        <div
+          className="mb-0 collapsed"
+          data-toggle="collapse"
+          data-target={`#collapse-${user.id}`}
+          aria-expanded="false"
+          aria-controls={`collapse-${user.id}`}
+          onClick={() => selectUser(user)}
+        >
+          {/* <button
             className="btn btn-link w-100 collapsed text-left"
             data-toggle="collapse"
             data-target={`#collapse-${user.id}`}
             aria-expanded="false"
             aria-controls={`collapse-${user.id}`}
             onClick={() => selectUser(user)}
-          >
-            <span className="w-100 d-flex justify-content-between ">
-              <span>{`${user.firstName} ${user.lastName}: ${user.email}`}</span>
-              <span>Role: [{user.role}] </span>
-            </span>
-          </button>
-        </h5>
+          > */}
+          <span className="w-100 d-flex justify-content-between ">
+            <span>User Name: {`${user.firstName}  ${user.lastName}`}</span>
+            <span>User Email: {user.email}</span>
+            <span>Role: [{user.role}] </span>
+          </span>
+          {/* </button> */}
+        </div>
       </div>
 
       <div

@@ -1,6 +1,7 @@
 import React from "react";
+const toShowCount = [6, 9, 12];
 
-const StoreFilter = ({ orderBy, doOrder, shownItems, showItems }) => {
+const StoreFilter = ({ orderBy, doOrder, shownItems, setItemsCount }) => {
   return (
     <div className="store-filter clearfix">
       <div className="store-sort">
@@ -75,36 +76,19 @@ const StoreFilter = ({ orderBy, doOrder, shownItems, showItems }) => {
               Shown: {shownItems}
             </button>
             <div className="dropdown-menu">
-              <a
-                className="dropdown-item"
-                href="#"
-                onClick={e => {
-                  e.stopPropagation();
-                  showItems(6);
-                }}
-              >
-                6
-              </a>
-              <a
-                className="dropdown-item"
-                href="#"
-                onClick={e => {
-                  e.stopPropagation();
-                  showItems(9);
-                }}
-              >
-                9
-              </a>
-              <a
-                className="dropdown-item"
-                href="#"
-                onClick={e => {
-                  e.stopPropagation();
-                  showItems(12);
-                }}
-              >
-                12
-              </a>
+              {toShowCount.map(item => (
+                <a
+                  key={`${item}s_show`}
+                  className="dropdown-item"
+                  href="#"
+                  onClick={e => {
+                    e.stopPropagation();
+                    setItemsCount(item);
+                  }}
+                >
+                  {item}
+                </a>
+              ))}
             </div>
           </div>
         </label>
