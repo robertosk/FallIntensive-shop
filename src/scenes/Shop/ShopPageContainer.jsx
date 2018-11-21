@@ -20,7 +20,7 @@ const ShopPage = props => {
 
 const mapStateToProps = state => ({
   products: productsSelectors.getProducts(state),
-  isLoading: state.app.isLoading,
+  isLoading: state.products.isLoading,
   isError: !!state.products.error,
   error: state.products.error
 });

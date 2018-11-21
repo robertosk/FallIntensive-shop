@@ -24,7 +24,7 @@ function validate(values) {
   return errors;
 }
 
-const LoginContainer = ({ logIn, isLogged, loading }) => {
+const LoginContainer = ({ logIn, isLogged, loading, error }) => {
   async function onSubmit(values, form) {
     try {
       logIn(values);
@@ -79,6 +79,7 @@ const LoginContainer = ({ logIn, isLogged, loading }) => {
                 Login
               </button>
             </div>
+            {error && <p className="text-danger">{error}</p>}
             <div className="form-group d-flex justify-content-between">
               <div className="form-check form-check-flat mt-0">
                 <div className="input-checkbox">
@@ -113,7 +114,8 @@ const LoginContainer = ({ logIn, isLogged, loading }) => {
 };
 const mapStateToProps = state => ({
   isLogged: state.app.loggedIn,
-  loading: state.app.loading
+  loading: state.app.loading,
+  error: state.app.error
 });
 const mapStateToDispatch = {
   logIn: appOperations.logIn

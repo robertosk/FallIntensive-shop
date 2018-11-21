@@ -28,9 +28,6 @@ const enhance = compose(
   ),
   lifecycle({
     componentDidMount() {
-      console.log("==this.props.pager.currentPage===");
-      console.log(this.props.pager.currentPage);
-      console.log("====================================");
       this.props.setPage(this.props.pager.currentPage, this.props.shownItems);
       this.props.initPagination();
     }

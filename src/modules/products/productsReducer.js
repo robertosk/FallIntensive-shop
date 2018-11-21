@@ -24,13 +24,11 @@ export default handleActions(
   {
     [constants.SET_PAGER]: (state, actions) => ({
       ...state,
-      isLoading: true,
       productsPagination: actions.payload.productsPagination
     }),
 
     [constants.FETCH_PRODUCTS_START]: state => ({
       ...state,
-      isLoading: true,
       productsPagination: {
         ...state.productsPagination,
         loading: true
@@ -40,7 +38,6 @@ export default handleActions(
 
     [constants.FETCH_PRODUCTS_OK]: (state, action) => ({
       ...state,
-      isLoading: false,
       products: action.payload.ids,
       productsPagination: {
         ...state.productsPagination,
@@ -57,19 +54,16 @@ export default handleActions(
 
     [constants.FETCH_PRODUCT_BY_ID_START]: state => ({
       ...state,
-      isLoading: true,
       error: null
     }),
 
     [constants.FETCH_PRODUCT_BY_ID_OK]: (state, action) => ({
       ...state,
-      isLoading: false,
       singleProduct: { ...action.payload.singleProduct }
     }),
 
     [constants.FETCH_PRODUCT_BY_ID_ERROR]: (state, action) => ({
       ...state,
-      isLoading: false,
       error: action.payload.message
     })
   },

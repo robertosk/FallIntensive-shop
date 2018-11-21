@@ -38,8 +38,8 @@ export default handleActions(
         ...state,
         currentUser: {},
         loggedIn: false,
-        loading: true,
-        error: actions.payload.message
+        loading: false,
+        error: actions.payload
       };
     },
 

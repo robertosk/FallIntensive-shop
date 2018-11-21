@@ -19,9 +19,7 @@ const RemoveModal = ({
           appElement={document.getElementById("root")}
         >
           <div className="card">
-            <div className="card-header bg-danger text-white">
-              Remove product
-            </div>
+            <div className="card-header bg-danger text-white">Remove user</div>
             <div className="card-body">
               <p>
                 You are going to remove {selectedUser.email} !

@@ -13,6 +13,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import UsersListContainer from "./Pages/UsersList/UsersListContainer";
 import ProductPage from "./Pages/ProductsList/ProductsPage";
 import Footer from "./Components/Footer";
+import Page404 from "../Errors/Page404";
 
 const AdminPage = ({
   toggleSidebar,
@@ -57,6 +58,8 @@ const AdminPage = ({
                     />
                   )}
                 />
+
+                <Route path="*" component={Page404} />
               </Switch>
             </div>
             <Footer />
