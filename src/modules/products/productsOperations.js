@@ -7,7 +7,7 @@ export const fetchProducts = () => async dispatch => {
   try {
     dispatch(actions.fetchProductsStart());
 
-    const res = await Api.Products.fetchProducts(10, 0);
+    const res = await Api.Products.fetchProducts(9, 0);
     const { result, entities } = normalize(res.data, schemes.ProductCollection);
 
     dispatch(
@@ -48,6 +48,7 @@ export const setPage = (page = 1, itemsCount = 9) => async (
     }
     const res = await Api.Products.fetchProducts(limit, offset);
     const { result, entities } = normalize(res.data, schemes.ProductCollection);
+
     dispatch(
       actions.fetchProductsOk({
         ids: result,

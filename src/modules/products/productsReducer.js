@@ -40,10 +40,11 @@ export default handleActions(
 
     [constants.FETCH_PRODUCTS_OK]: (state, action) => ({
       ...state,
+      isLoading: false,
       products: action.payload.ids,
       productsPagination: {
         ...state.productsPagination,
-        currentPage: action.payload.page,
+        currentPage: action.payload.page || 1,
         loading: false
       }
     }),
