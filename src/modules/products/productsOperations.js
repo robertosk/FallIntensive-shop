@@ -7,7 +7,7 @@ export const fetchProducts = () => async dispatch => {
   try {
     dispatch(actions.fetchProductsStart());
 
-    const res = await Api.Products.fetchProducts();
+    const res = await Api.Products.fetchProducts(10, 0);
     const { result, entities } = normalize(res.data, schemes.ProductCollection);
 
     dispatch(

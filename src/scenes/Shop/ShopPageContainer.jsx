@@ -26,6 +26,7 @@ const mapStateToProps = state => ({
 });
 
 const mapStateToDispatch = {
+  fetchProducts: productOperations.fetchProducts,
   initPagination: productOperations.initPagination,
   addToCart: cartActions.add
 };
@@ -46,6 +47,7 @@ const enhance = compose(
   }),
   lifecycle({
     componentDidMount() {
+      this.props.fetchProducts();
       this.props.onHandleLocation(this.props.location);
     },
 

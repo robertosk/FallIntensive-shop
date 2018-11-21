@@ -5,8 +5,8 @@ import { routes } from "../../routes";
 
 import Loading from "../../components/Loading";
 import HomePage from "./Pages/HomePage";
-import Store from "./Pages/StorePage";
-import SingleItemPage from "./Pages/SingleItemPage";
+import Store from "./Pages/StorePageContainer";
+import SingleItemPageContainer from "./Pages/SingleItemPageContainer";
 import CartPage from "./Pages/CartPage";
 import CheckoutPage from "./Pages/CheckoutPage";
 import AboutPage from "./Pages/AboutPage";
@@ -69,7 +69,7 @@ const ShopPageView = ({
           <Route
             path={routes.product}
             render={renderProps => (
-              <SingleItemPage
+              <SingleItemPageContainer
                 {...renderProps}
                 products={products}
                 onAddToCart={addToCart}

@@ -2083,6 +2083,11 @@ ol {
             font-size: 32px;
           }
         }
+
+        .user-dropdown {
+          right: 0 !important;
+          left: auto !important;
+        }
       }
     }
   }
@@ -2243,15 +2248,16 @@ textarea.input {
     &:focus:after {
       width: 100%;
     }
-  }
 
-  &.active a {
-    color: $color_monza_approx;
+    &.active {
+      color: $color_monza_approx;
 
-    &:after {
-      width: 100%;
+      &:after {
+        width: 100%;
+      }
     }
   }
+
 }
 
 .header-links li {

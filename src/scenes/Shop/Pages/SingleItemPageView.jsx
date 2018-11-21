@@ -1,13 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
-import * as productsOperations from "../../../modules/products/productsOperations";
 import AddToCartBtn from "../Sections/components/AddToCartBtn";
 import SingleItemPageImages from "../Sections/components/SingleItemPageImages";
 import ReviewsList from "../Sections/ReviewsList";
 import Loading from "../../../components/Loading";
-import { compose, lifecycle } from "recompose";
 
-const SingleItemPage = ({ product, onAddToCart, isLoading }) => {
+const SingleItemPageView = ({ product, onAddToCart, isLoading }) => {
   const images = new Array(product.image);
   if (isLoading) {
     return <Loading />;
@@ -347,23 +344,4 @@ const SingleItemPage = ({ product, onAddToCart, isLoading }) => {
   );
 };
 
-const mapStateToProps = (state, props) => ({
-  product: state.products.singleProduct,
-  isLoading: state.products.isLoading
-});
-const mapStateToDispatch = {
-  fetchProduct: productsOperations.fetchProductByID
-};
-
-const enhance = compose(
-  connect(
-    mapStateToProps,
-    mapStateToDispatch
-  ),
-  lifecycle({
-    componentDidMount() {
-      this.props.fetchProduct(this.props.match.params.id);
-    }
-  })
-);
-export default enhance(SingleItemPage);
+export default SingleItemPageView;

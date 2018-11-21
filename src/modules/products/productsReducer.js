@@ -24,11 +24,13 @@ export default handleActions(
   {
     [constants.SET_PAGER]: (state, actions) => ({
       ...state,
+      isLoading: true,
       productsPagination: actions.payload.productsPagination
     }),
 
     [constants.FETCH_PRODUCTS_START]: state => ({
       ...state,
+      isLoading: true,
       productsPagination: {
         ...state.productsPagination,
         loading: true

@@ -1,5 +1,5 @@
 import React from "react";
-import CartWidget from "../Sections/components/CartWidget";
+import CartWidget from "../Sections/components/CartWidgetContainer";
 
 const CheckoutPage = () => {
   return (

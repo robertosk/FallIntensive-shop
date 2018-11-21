@@ -2,7 +2,7 @@ import React from "react";
 
 const Breadcrumb = ({ itemsCount }) => {
   return (
-    <div id="breadcrumb" className="section">
+    <div id="breadcrumb" className="section ">
       <div className="container">
         <div className="row">
           <div className="col-md-12">

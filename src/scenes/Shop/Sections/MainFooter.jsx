@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { mainNav, infoNav, serviceNav } from "../../../data/navigations";
+
 const Footer = () => {
   return (
     <footer id="footer">

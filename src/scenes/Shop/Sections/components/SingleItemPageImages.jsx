@@ -2,7 +2,15 @@ import React from "react";
 import Slider from "react-slick";
 import { compose, lifecycle, withState, withHandlers } from "recompose";
 
-const SingleItemPageImages = ({ images, navContainer, viewContainer }) => {
+const SingleItemPageImages = ({
+  images,
+  navContainer,
+  viewContainer,
+  handleSlider1,
+  handleSlider2
+}) => {
+  images.push("../img/shop02.png");
+  images.push("../img/shop03.png");
   const viewImage = {
     infinite: true,
     speed: 300,
@@ -11,7 +19,9 @@ const SingleItemPageImages = ({ images, navContainer, viewContainer }) => {
     fade: true,
     asNavFor: viewContainer,
     ref: slider => {
-      //this.slider1 = slider;
+      if (slider) {
+        // handleSlider1(slider);
+      }
     }
   };
 
@@ -26,7 +36,9 @@ const SingleItemPageImages = ({ images, navContainer, viewContainer }) => {
     vertical: true,
     asNavFor: navContainer,
     ref: slider => {
-      // this.slider2 = slider;
+      if (slider) {
+        //handleSlider2(slider);
+      }
     },
     responsive: [
       {
@@ -43,16 +55,14 @@ const SingleItemPageImages = ({ images, navContainer, viewContainer }) => {
     <>
       <div className="col-md-2" id="product-imgs">
         <Slider {...navImages}>
-          {images.map(image => {
-            return (
-              <div
-                key={`sli-nav${image}`}
-                className="product-preview slick-slide"
-              >
-                <img src={image} alt="" />
-              </div>
-            );
-          })}
+          {images.map(image => (
+            <div
+              key={`sli-nav${image}`}
+              className="product-preview slick-slide"
+            >
+              <img src={image} alt="" />
+            </div>
+          ))}
         </Slider>
       </div>
       <div className="col-md-5" id="product-main-img">
@@ -80,8 +90,8 @@ const enhance = compose(
   withState("slider2", "handleSlider2", null),
   lifecycle({
     componentDidMount() {
-      this.props.handleNavContainer(this.slider1);
-      this.props.handleViewContainer(this.slider2);
+      this.props.handleNavContainer(this.props.slider1);
+      this.props.handleViewContainer(this.props.slider2);
     }
   }),
   withHandlers({})

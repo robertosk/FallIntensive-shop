@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { routes } from "../../../routes";
-import CartWidget from "../Sections/components/CartWidget";
+import CartWidget from "../Sections/components/CartWidgetContainer";
 
-const CartPage = ({ cartModal }) => {
+const CartPage = () => {
   return (
     <div className="section">
       <div className="container">
